@@ -3,26 +3,29 @@ import {fetchJson} from "@ethersproject/web";
 import {ConnectionInfo} from "ethers/lib/utils";
 import {Formatter} from "@ethersproject/providers";
 
-export enum Blockchain {
-    ETH = "eth",
-    BSC = "bsc",
-    Polygon = "polygon",
-    Fantom = "fantom",
-    Arbitrum = "arbitrum",
-    Avalanche = "avalanche"
+const ANKRSCAN_URL = "https://rpc.ankr.com/multichain/"
+
+enum Blockchain {
+    "eth",
+    "bsc",
+    "polygon",
+    "fantom",
+    "arbitrum",
+    "avalanche",
 }
 
-export class AnkrscanProvider {
+export default class AnkrscanProvider {
     connection: ConnectionInfo
     formatter: Formatter
     _nextId: number
 
     /**
      * Constructs an instance of AnkrscanProvider.
-     * @param url The endpoint url of Ankr Scan JSON-RPC.
+     * @param apiKey The API key for authorization.
+     * @param endpoint Ankr Scan MultiChain RPC endpoint.
      */
-    constructor(url: string) {
-        this.connection = <ConnectionInfo>{url: url}
+    constructor(apiKey: string, endpoint: string = ANKRSCAN_URL) {
+        this.connection = <ConnectionInfo>{url: endpoint + apiKey}
         this.formatter = new Formatter()
         this._nextId = 1
     }
@@ -33,7 +36,7 @@ export class AnkrscanProvider {
      * @param filter Filter parameters.
      * @returns Promise<Log[]> Array of Logs.
      */
-    async getLogs(blockchain: Blockchain | string, filter: Filter | Promise<Filter>): Promise<Log[]> {
+    async getLogs(blockchain: keyof typeof Blockchain, filter: Filter | Promise<Filter>): Promise<Log[]> {
         const result = await this.send("ankr_getLogs", {"blockchain": blockchain, ...filter})
         return Formatter.arrayOf(this.formatter.filterLog.bind(this.formatter))(result.logs)
     }
@@ -56,4 +59,3 @@ function getResult(payload: { error?: { code?: number, data?: any, message?: str
 
     return payload.result;
 }
-

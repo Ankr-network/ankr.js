@@ -34,29 +34,28 @@ const { AnkrscanProvider } = require("ankrscan.js");
 ```
 ES6 or TypeScript
 ```shell
-import { AnkrscanProvider } from "ankrscan.js";
+import AnkrscanProvider from "ankrscan.js";
 ```
 
 ## Usage example
 
-#### Create a provider
-Establish a connection to MultiChain via `AnkrscanProvider`
 ```javascript
-const ankrscan_url = "https://rpc.ankr.com/multichain/YOUR-API-KEY"
-const provider = new AnkrscanProvider(ankrscan_url)
-```
+import AnkrscanProvider from "ankrscan.js";
 
-#### Querying logs
-```javascript
-logs = await provider.getLogs(
-    "eth",
-    {
-        fromBlock: 1181739,
-        toBlock: 1181739,
-        topics: [[], ["0x000000000000000000000000feb92d30bf01ff9a1901666c5573532bfa07eeec"]],
-        address: "0x3589d05a1ec4af9f65b0e5554e645707775ee43c"
-    }
-)
+// Establish a connection to MultiChain via AnkrscanProvider
+const provider = new AnkrscanProvider("YOUR-API-KEY")
+// Query logs
+const filterLogs = async () => {
+    return await provider.getLogs(
+        "eth",
+        {
+            fromBlock: 1181739,
+            toBlock: 1181739,
+            topics: [[], ["0x000000000000000000000000feb92d30bf01ff9a1901666c5573532bfa07eeec"]],
+            address: "0x3589d05a1ec4af9f65b0e5554e645707775ee43c"
+        }
+    )
+}
 
 // Returns:
 // [
@@ -75,5 +74,4 @@ logs = await provider.getLogs(
 //         logIndex: 0
 //     }, {...}
 // ]
-
 ```
