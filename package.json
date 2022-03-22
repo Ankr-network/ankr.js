@@ -13,7 +13,7 @@
     "build": "tsc",
     "start": "tsc --watch"
   },
-  "author": "",
+  "author": "Ankr Scan",
   "license": "MIT",
   "dependencies": {
     "@types/node": "^17.0.22",
