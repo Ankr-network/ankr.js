@@ -41,7 +41,7 @@ export default class AnkrscanProvider {
      * @param fromBlock Block number to start range from.
      * @param toBlock Block number to limit range to.
      */
-    async getBlocksRange(blockchain: BlockchainName, fromBlock: BlockTag, toBlock: BlockTag,): Promise<Block[]> {
+    async getBlocksRange(blockchain: BlockchainName, fromBlock: BlockTag, toBlock: BlockTag): Promise<Block[]> {
         const params = {blockchain: blockchain, fromBlock: fromBlock, toBlock: toBlock}
         const result = await this.send("ankr_getBlocksRange", params)
         return this.formatter.formatBlocks(result.blocks)
