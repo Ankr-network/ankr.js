@@ -1,0 +1,25 @@
+{
+  "name": "ankrscan.js",
+  "version": "1.0.0",
+  "description": "Compact library for interacting with Ankr Scan MultiChain JSON-RPC.",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/*"
+  ],
+  "type": "commonjs",
+  "scripts": {
+    "pub": "tsc && yarn version && yarn publish",
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "start": "tsc --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^17.0.22",
+    "ethers": "^5.6.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  }
+}
