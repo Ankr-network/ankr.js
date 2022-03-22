@@ -40,7 +40,7 @@ import { AnkrscanProvider } from "ankrscan.js";
 ## Usage example
 
 #### Create a provider
-Establish a connection to MultiChain via `AnkrscanProvide`
+Establish a connection to MultiChain via `AnkrscanProvider`
 ```javascript
 const ankrscan_url = "https://rpc.ankr.com/multichain/YOUR-API-KEY"
 const provider = new AnkrscanProvider(ankrscan_url)
