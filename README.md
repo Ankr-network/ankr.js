@@ -20,11 +20,11 @@ that is, SDK widely uses ethers' Classes, Functions and Interfaces.
 
 ## Installation
 ```shell
-npm install @Ankr-network/ankrscan.js
+npm install ankrscan.js
 ```
 or
 ```shell
-yarn add @Ankr-network/ankrscan.js
+yarn add ankrscan.js
 ```
 
 ## Import
