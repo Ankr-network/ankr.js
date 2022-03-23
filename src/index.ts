@@ -3,12 +3,16 @@ import {
     Block,
     GetAccountBalanceReply,
     GetAccountBalanceRequest,
+    GetBlocksByNumberReply,
     GetBlocksRangeRequest,
+    GetLogsReply,
     GetLogsRequest,
     GetNFTsByOwnerReply,
     GetNFTsByOwnerRequest,
     Log
 } from "./types";
+
+type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
 
 export default class AnkrscanProvider {
     url: string
@@ -32,8 +36,8 @@ export default class AnkrscanProvider {
      * @returns Promise<Log[]>
      */
     async getLogs(params: GetLogsRequest): Promise<Log[]> {
-        const result = await this.send("ankr_getLogs", params)
-        return <Promise<Log[]>>result.logs
+        const result = await this.send<GetLogsReply>("ankr_getLogs", params)
+        return result.logs
     }
 
     /**
@@ -42,8 +46,8 @@ export default class AnkrscanProvider {
      * @returns Promise<Block[]>
      */
     async getBlocksRange(params: GetBlocksRangeRequest): Promise<Block[]> {
-        const result = await this.send("ankr_getBlocksRange", params)
-        return <Promise<Block[]>>result.blocks
+        const result = await this.send<GetBlocksByNumberReply>("ankr_getBlocksRange", params)
+        return result.blocks
     }
 
     /**
@@ -52,8 +56,7 @@ export default class AnkrscanProvider {
      * @returns Promise<Balance[]>
      */
     async getAccountBalance(params: GetAccountBalanceRequest): Promise<GetAccountBalanceReply> {
-        const result = await this.send("ankr_getAccountBalance", params)
-        return <Promise<GetAccountBalanceReply>>result
+        return await this.send<GetAccountBalanceReply>("ankr_getAccountBalance", params)
     }
 
     /**
@@ -62,17 +65,16 @@ export default class AnkrscanProvider {
      * @returns Promise<GetNFTsByOwnerReply>
      */
     async getNFTsByOwner(params: GetNFTsByOwnerRequest): Promise<GetNFTsByOwnerReply> {
-        const result = await this.send("ankr_getNFTsByOwner", params)
-        return <Promise<GetNFTsByOwnerReply>>result
+        return await this.send<GetNFTsByOwnerReply>("ankr_getNFTsByOwner", params)
     }
 
-    private async send(method: string, params: any): Promise<any> {
+    private async send<TReply>(method: string, params: any): Promise<TReply> {
         const request = {method: method, params: params, id: (this._nextId++), jsonrpc: "2.0"};
-        const response = await axios.post(this.url, JSON.stringify(request), this.request_config);
-        return AnkrscanProvider.getResult(response.data)
+        const response = await axios.post<JsonRPCPayload>(this.url, JSON.stringify(request), this.request_config);
+        return <TReply>AnkrscanProvider.getResult(response.data)
     }
 
-    private static getResult(payload: { error?: { code?: number, data?: any, message?: string }, result?: any }): any {
+    private static getResult(payload: JsonRPCPayload): any {
         if (payload.error) {
             const error: any = new Error(payload.error.message);
             error.code = payload.error.code;
