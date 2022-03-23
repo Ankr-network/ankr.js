@@ -6,7 +6,7 @@
     "blockchain",
     "sdk"
   ],
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Compact library for interacting with Ankr Scan MultiChain JSON-RPC.",
   "main": "./dist/index.js",
   "files": [
