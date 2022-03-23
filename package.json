@@ -23,10 +23,7 @@
   "author": "Ankr Scan",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^17.0.22",
-    "ethers": "^5.6.1"
-  },
-  "devDependencies": {
+    "axios": "^0.26.1",
     "typescript": "^4.6.2"
   }
 }

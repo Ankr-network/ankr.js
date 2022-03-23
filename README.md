@@ -1,14 +1,12 @@
 # ankrscan.js
 Compact SDK for interacting with Ankr Scan MultiChain JSON-RPC API.
-Library is designed to be compatible with [ether.js](https://github.com/ethers-io/ethers.js),
-that is, SDK widely uses ethers' Classes, Functions and Interfaces.
 
-#### SDK supports following MultiChain methods so far:
+#### SDK supports following MultiChain methods:
 
-- [x] ankr_getLogs `AnkrscanProvider.getLogs`
-- [x] ankr_getBlocksRange `AnkrscanProvider.getBlocksRange`
-- [ ] ankr_getBalanceByWallet
-- [ ] ankr_getNFTsByOwner
+- ankr_getLogs `AnkrscanProvider.getLogs`
+- ankr_getBlocksRange `AnkrscanProvider.getBlocksRange`
+- ankr_getAccountBalance `AnkrscanProvider.getAccountBalance`
+- ankr_getNFTsByOwner `AnkrscanProvider.getNFTsByOwner`
 
 #### MultiChain support:
 - ETH: `"eth"`
@@ -48,8 +46,8 @@ const provider = new AnkrscanProvider("YOUR-API-KEY")
 // Query logs
 const filterLogs = async () => {
     return await provider.getLogs(
-        "eth",
         {
+            blockchain: "eth",
             fromBlock: 1181739,
             toBlock: 1181739,
             topics: [[], ["0x000000000000000000000000feb92d30bf01ff9a1901666c5573532bfa07eeec"]],
@@ -60,6 +58,12 @@ const filterLogs = async () => {
 
 // Query blocks
 const blockRange = async () => {
-    return await provider.getBlocksRange("bsc", 100, 200)
+    return await provider.getBlocksRange(
+        {
+            blockchain:"bsc",
+            fromBlock: 100,
+            toBlock:200
+        }
+    )
 }
 ```
