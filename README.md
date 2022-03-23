@@ -3,10 +3,10 @@ Compact SDK for interacting with Ankr Scan MultiChain JSON-RPC API.
 
 #### SDK supports following MultiChain methods:
 
-- ankr_getLogs `AnkrscanProvider.getLogs`
-- ankr_getBlocksRange `AnkrscanProvider.getBlocksRange`
-- ankr_getAccountBalance `AnkrscanProvider.getAccountBalance`
-- ankr_getNFTsByOwner `AnkrscanProvider.getNFTsByOwner`
+- `getLogs` - logs matching the filter.
+- `getBlocksRange` - blocks within specified range.
+- `getAccountBalance` - coin and token balances of the wallet.
+- `getNFTsByOwner` - NFT collectibles of the wallet.
 
 #### MultiChain support:
 - ETH: `"eth"`
