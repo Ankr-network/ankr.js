@@ -2,7 +2,7 @@
 
 
 export interface GetNFTsByOwnerRequest {
-    blockchain?: string;
+    blockchain?: string[];
     filter?: {[key: string]: string[]}[];
     walletAddress: string;
     pageToken?: string;
