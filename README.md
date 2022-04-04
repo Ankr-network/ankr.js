@@ -8,13 +8,16 @@ Compact SDK for interacting with Ankr Scan MultiChain JSON-RPC API.
 - `getAccountBalance` - coin and token balances of the wallet.
 - `getNFTsByOwner` - NFT collectibles of the wallet.
 
-#### MultiChain support:
+#### MultiChain support
 - ETH: `"eth"`
 - BSC: `"bsc"`
 - Polygon: `"polygon"`
 - Fantom: `"fantom"`
 - Arbitrum: `"arbitrum"`
 - Avalanche: `"avalanche"`
+
+### Acquire an API key
+During the launch stage, Ankr Scan offers free access to the API with no request limits. That is, you can access the API without acquiring an API key. Later on Ankr Scan API will become a part of Ankr Protocol [Premium Plan](https://www.ankr.com/protocol/plan/).
 
 ## Installation
 ```shell
@@ -44,7 +47,7 @@ import AnkrscanProvider from "ankrscan.js";
 const provider = new AnkrscanProvider("YOUR-API-KEY")
 
 // Get logs
-const filterLogs = async () => {
+const getLogs = async () => {
     return await provider.getLogs({
         blockchain: "eth",
         fromBlock: 1181739,
@@ -55,7 +58,7 @@ const filterLogs = async () => {
 }
 
 // Blocks range
-const getBlocks = async () => {
+const getBlocksRange = async () => {
     return await provider.getBlocksRange({
         blockchain: "bsc",
         fromBlock: 100,
@@ -64,7 +67,7 @@ const getBlocks = async () => {
 }
 
 // Account balances
-const getBalances = async () => {
+const getAccountBalance = async () => {
     return await provider.getAccountBalance({
         blockchain: "eth",
         walletAddress: "0xfa9019df60d3c710d7d583b2d69e18d412257617"
@@ -72,7 +75,7 @@ const getBalances = async () => {
 }
 
 // Get NFTs
-const getNFTs = async () => {
+const getNFTsByOwner = async () => {
     return await provider.getNFTsByOwner({
         blockchain: "eth",
         walletAddress: "0x0E11A192d574b342C51be9e306694C41547185DD",
