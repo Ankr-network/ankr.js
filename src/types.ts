@@ -78,7 +78,7 @@ export interface CurrencyDetailsExtended {
     name: string;
     decimals: number;
     symbol: string;
-    meta: string;
+    thumbnail: string;
 }
 export interface GetCurrenciesReply {
     currencies: CurrencyDetailsExtended[];
