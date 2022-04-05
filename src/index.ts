@@ -4,11 +4,11 @@ import {
     GetAccountBalanceReply,
     GetAccountBalanceRequest,
     GetBlocksByNumberReply,
-    GetBlocksRangeRequest,
+    GetBlocksRangeRequest, GetCurrenciesReply, GetCurrenciesRequest,
     GetLogsReply,
     GetLogsRequest,
     GetNFTsByOwnerReply,
-    GetNFTsByOwnerRequest,
+    GetNFTsByOwnerRequest, GetTokenHoldersReply, GetTokenHoldersRequest,
     Log
 } from "./types";
 
@@ -66,6 +66,24 @@ export default class AnkrscanProvider {
      */
     async getNFTsByOwner(params: GetNFTsByOwnerRequest): Promise<GetNFTsByOwnerReply> {
         return await this.send<GetNFTsByOwnerReply>("ankr_getNFTsByOwner", params)
+    }
+
+    /**
+     * Returns list of token holders.
+     * @param params A GetTokenHoldersRequest object.
+     * @returns Promise<GetTokenHoldersReply>
+     */
+    async getTokenHolders(params: GetTokenHoldersRequest): Promise<GetTokenHoldersReply> {
+        return await this.send<GetTokenHoldersReply>("ankr_getTokenHolders", params)
+    }
+
+    /**
+     * Returns list of currencies.
+     * @param params A GetCurrenciesRequest object.
+     * @returns Promise<GetCurrenciesReply>
+     */
+    async getCurrencies(params: GetCurrenciesRequest): Promise<GetCurrenciesReply> {
+        return await this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
     }
 
     private async send<TReply>(method: string, params: any): Promise<TReply> {

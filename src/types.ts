@@ -51,6 +51,39 @@ export interface GetAccountBalanceRequest {
     pageToken?: string;
     pageSize?: number;
 }
+export interface GetTokenHoldersRequest {
+    blockchain: string;
+    contractAddress: string;
+    pageToken?: string;
+    pageSize?: number;
+}
+export interface HolderBalance {
+    holderAddress: string;
+    balanceRawInteger: string;
+}
+export interface GetTokenHoldersReply {
+    blockchain: string;
+    contractAddress: string;
+    holders: HolderBalance[];
+    nextPageToken: string;
+}
+export interface GetCurrenciesRequest {
+    blockchain: string;
+    pageToken?: string;
+    pageSize?: number;
+}
+export interface CurrencyDetailsExtended {
+    blockchain: string;
+    address: string;
+    name: string;
+    decimals: number;
+    symbol: string;
+    meta: string;
+}
+export interface GetCurrenciesReply {
+    currencies: CurrencyDetailsExtended[];
+    nextPageToken: string;
+}
 export interface Log {
     address: string;
     topics: string[];
@@ -67,8 +100,8 @@ export interface GetLogsReply {
 }
 export interface GetLogsRequest {
     blockchain: string;
-    fromBlock?: number | string;
-    toBlock?: number | string;
+    fromBlock?: number | "latest" | "earliest";
+    toBlock?: number | "latest" | "earliest";
     address?: string | string[];
     topics?: (string | string[])[];
 }

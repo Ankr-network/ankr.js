@@ -38,16 +38,18 @@ ES6 or TypeScript
 import AnkrscanProvider from "ankrscan.js";
 ```
 
-## Usage example
+## Usage examples
 
+#### Instantiate provider
 ```javascript
 import AnkrscanProvider from "ankrscan.js";
 
-// Create a provider
 const provider = new AnkrscanProvider("YOUR-API-KEY")
+```
 
-// Get logs
-const getLogs = async () => {
+#### Get logs
+```javascript
+const filterLogs = async () => {
     return await provider.getLogs({
         blockchain: "eth",
         fromBlock: 1181739,
@@ -56,26 +58,32 @@ const getLogs = async () => {
         address: "0x3589d05a1ec4af9f65b0e5554e645707775ee43c"
     })
 }
+```
 
-// Blocks range
-const getBlocksRange = async () => {
+#### Get blocks
+```javascript
+const getBlocks = async () => {
     return await provider.getBlocksRange({
         blockchain: "bsc",
         fromBlock: 100,
         toBlock: 200
     })
 }
+```
 
-// Account balances
-const getAccountBalance = async () => {
+#### Get account balances
+```javascript
+const getBalances = async () => {
     return await provider.getAccountBalance({
         blockchain: "eth",
         walletAddress: "0xfa9019df60d3c710d7d583b2d69e18d412257617"
     })
 }
+```
 
-// Get NFTs
-const getNFTsByOwner = async () => {
+#### Get NFTs
+```javascript
+const getNFTs = async () => {
     return await provider.getNFTsByOwner({
         blockchain: "eth",
         walletAddress: "0x0E11A192d574b342C51be9e306694C41547185DD",
@@ -84,5 +92,21 @@ const getNFTsByOwner = async () => {
             {"0xd8682bfa6918b0174f287b888e765b9a1b4dc9c3": ["8937"]}
         ]
     })
+}
+```
+#### Get token holders
+```javascript
+const getTokenHolders = async () => {
+    return await provider.getTokenHolders({
+        blockchain: "eth",
+        contractAddress: "0xdac17f958d2ee523a2206206994597c13d831ec7"
+    })
+}
+```
+
+#### Get currencies
+```javascript
+const getCurrencies = async () => {
+    return await provider.getCurrencies({blockchain: "fantom"})
 }
 ```
