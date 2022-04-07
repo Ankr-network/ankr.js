@@ -59,18 +59,18 @@ export interface GetTokenHoldersRequest {
 }
 export interface HolderBalance {
     holderAddress: string;
+    balance: string;
     balanceRawInteger: string;
 }
 export interface GetTokenHoldersReply {
     blockchain: string;
     contractAddress: string;
+    tokenDecimals: number;
     holders: HolderBalance[];
     nextPageToken: string;
 }
 export interface GetCurrenciesRequest {
     blockchain: string;
-    pageToken?: string;
-    pageSize?: number;
 }
 export interface CurrencyDetailsExtended {
     blockchain: string;
@@ -82,7 +82,6 @@ export interface CurrencyDetailsExtended {
 }
 export interface GetCurrenciesReply {
     currencies: CurrencyDetailsExtended[];
-    nextPageToken: string;
 }
 export interface Log {
     address: string;
