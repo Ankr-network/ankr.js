@@ -3,15 +3,17 @@
 
 export interface GetNFTsByOwnerRequest {
     blockchain?: string[];
-    filter?: {[key: string]: string[]}[];
+    filter?: { [key: string]: string[] }[];
     walletAddress: string;
     pageToken?: string;
     pageSize?: number;
 }
+
 export interface Attribute {
     trait_type?: string;
     value?: string;
 }
+
 export interface Nft {
     blockchain: string;
     name: string;
@@ -25,11 +27,41 @@ export interface Nft {
     quantity?: string;
     traits?: Attribute[];
 }
+
 export interface GetNFTsByOwnerReply {
     owner: string;
     assets: Nft[];
     nextPageToken: string;
 }
+
+export interface GetNFTMetadataRequest {
+    blockchain: string;
+    contractAddress: string;
+    tokenId: string;
+}
+
+export interface NftAttributes {
+    tokenUrl: string;
+    imageUrl: string;
+    name: string;
+    description: string;
+    traits?: Attribute[];
+    contractType: number;
+    fetched: boolean;
+}
+
+export interface NftMetadata {
+    blockchain: string;
+    contractAddress: string;
+    tokenId: string;
+    contractType: number;
+}
+
+export interface GetNFTMetadataReply {
+    metadata?: NftMetadata;
+    attributes?: NftAttributes;
+}
+
 export interface Balance {
     blockchain: string;
     tokenName: string;
@@ -41,27 +73,32 @@ export interface Balance {
     balance: string;
     balanceRawInteger: string;
 }
+
 export interface GetAccountBalanceReply {
     assets: Balance[];
     nextPageToken?: string;
 }
+
 export interface GetAccountBalanceRequest {
     blockchain?: string;
     walletAddress: string;
     pageToken?: string;
     pageSize?: number;
 }
+
 export interface GetTokenHoldersRequest {
     blockchain: string;
     contractAddress: string;
     pageToken?: string;
     pageSize?: number;
 }
+
 export interface HolderBalance {
     holderAddress: string;
     balance: string;
     balanceRawInteger: string;
 }
+
 export interface GetTokenHoldersReply {
     blockchain: string;
     contractAddress: string;
@@ -69,20 +106,35 @@ export interface GetTokenHoldersReply {
     holders: HolderBalance[];
     nextPageToken: string;
 }
+
 export interface GetCurrenciesRequest {
     blockchain: string;
 }
+
 export interface CurrencyDetailsExtended {
     blockchain: string;
-    address: string;
+    address?: string;
     name: string;
     decimals: number;
     symbol: string;
     thumbnail: string;
 }
+
 export interface GetCurrenciesReply {
     currencies: CurrencyDetailsExtended[];
 }
+
+export interface GetUsdPriceRequest {
+    blockchain: string;
+    contractAddress: string;
+}
+
+export interface GetUsdPriceReply {
+    usdPrice: string;
+    blockchain: string;
+    contractAddress?: string;
+}
+
 export interface Log {
     address: string;
     topics: string[];
@@ -94,9 +146,11 @@ export interface Log {
     logIndex: string;
     removed: boolean;
 }
+
 export interface GetLogsReply {
     logs: Log[];
 }
+
 export interface GetLogsRequest {
     blockchain: string;
     fromBlock?: number | "latest" | "earliest";
@@ -104,11 +158,13 @@ export interface GetLogsRequest {
     address?: string | string[];
     topics?: (string | string[])[];
 }
+
 export interface GetBlocksRangeRequest {
     blockchain: string;
     fromBlock: number;
     toBlock: number;
 }
+
 export interface Transaction {
     v: string;
     r: string;
@@ -133,6 +189,7 @@ export interface Transaction {
     hash: string;
     status: string;
 }
+
 export interface Block {
     blockchain: string;
     number: string;
@@ -156,6 +213,21 @@ export interface Block {
     transactions: Transaction[];
     uncles: string[];
 }
+
 export interface GetBlocksByNumberReply {
     blocks: Block[];
+}
+
+export interface GetBlockchainStatsRequest {
+    blockchain?: string | string[];
+}
+
+export interface BlockchainStat {
+    blockchain: string;
+    transactionsCount: number;
+    eventsCount: number;
+}
+
+export interface GetBlockchainStatsReply {
+    stats: BlockchainStat[];
 }

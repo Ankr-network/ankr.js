@@ -1,15 +1,22 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {
-    Block,
     GetAccountBalanceReply,
     GetAccountBalanceRequest,
+    GetBlockchainStatsRequest,
     GetBlocksByNumberReply,
-    GetBlocksRangeRequest, GetCurrenciesReply, GetCurrenciesRequest,
+    GetBlocksRangeRequest,
+    GetCurrenciesReply,
+    GetCurrenciesRequest,
     GetLogsReply,
     GetLogsRequest,
+    GetNFTMetadataReply,
+    GetNFTMetadataRequest,
     GetNFTsByOwnerReply,
-    GetNFTsByOwnerRequest, GetTokenHoldersReply, GetTokenHoldersRequest,
-    Log
+    GetNFTsByOwnerRequest,
+    GetTokenHoldersReply,
+    GetTokenHoldersRequest,
+    GetUsdPriceReply,
+    GetUsdPriceRequest
 } from "./types";
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
@@ -33,21 +40,19 @@ export default class AnkrscanProvider {
     /**
      * Returns the array of Log matching the filter.
      @param params A GetLogsRequest object.
-     * @returns Promise<Log[]>
+     * @returns Promise<GetLogsReply>
      */
-    async getLogs(params: GetLogsRequest): Promise<Log[]> {
-        const result = await this.send<GetLogsReply>("ankr_getLogs", params)
-        return result.logs
+    async getLogs(params: GetLogsRequest): Promise<GetLogsReply> {
+        return await this.send<GetLogsReply>("ankr_getLogs", params)
     }
 
     /**
      * Returns the array of Block within specified range.
      * @param params A GetBlocksRangeRequest object.
-     * @returns Promise<Block[]>
+     * @returns Promise<GetBlocksByNumberReply>
      */
-    async getBlocksRange(params: GetBlocksRangeRequest): Promise<Block[]> {
-        const result = await this.send<GetBlocksByNumberReply>("ankr_getBlocksRange", params)
-        return result.blocks
+    async getBlocksRange(params: GetBlocksRangeRequest): Promise<GetBlocksByNumberReply> {
+        return await this.send<GetBlocksByNumberReply>("ankr_getBlocksRange", params)
     }
 
     /**
@@ -69,6 +74,15 @@ export default class AnkrscanProvider {
     }
 
     /**
+     * Returns NFT's contract metadata.
+     * @param params A GetNFTMetadataRequest object.
+     * @returns Promise<GetNFTMetadataRequest>
+     */
+    async getNFTMetadata(params: GetNFTMetadataRequest): Promise<GetNFTMetadataReply> {
+        return await this.send<GetNFTMetadataReply>("ankr_getNFTMetadata", params)
+    }
+
+    /**
      * Returns list of token holders.
      * @param params A GetTokenHoldersRequest object.
      * @returns Promise<GetTokenHoldersReply>
@@ -79,11 +93,29 @@ export default class AnkrscanProvider {
 
     /**
      * Returns list of currencies.
+     * @param params A GetUsdPriceRequest object.
+     * @returns Promise<GetUsdPriceReply>
+     */
+    async getTokenPrice(params: GetUsdPriceRequest): Promise<GetUsdPriceReply> {
+        return await this.send<GetUsdPriceReply>("ankr_getTokenPrice", params)
+    }
+
+    /**
+     * Returns list of currencies.
      * @param params A GetCurrenciesRequest object.
      * @returns Promise<GetCurrenciesReply>
      */
     async getCurrencies(params: GetCurrenciesRequest): Promise<GetCurrenciesReply> {
         return await this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
+    }
+
+    /**
+     * Returns blockchains stats.
+     * @param params A GetBlockchainStatsRequest object.
+     * @returns Promise<GetBlocksByNumberReply>
+     */
+    async getBlockchainStats(params: GetBlockchainStatsRequest): Promise<GetBlocksByNumberReply> {
+        return await this.send<GetBlocksByNumberReply>("ankr_getBlockchainStats", params)
     }
 
     private async send<TReply>(method: string, params: any): Promise<TReply> {
