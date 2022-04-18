@@ -2,7 +2,6 @@ import axios, {AxiosRequestConfig} from 'axios';
 import {
     GetAccountBalanceReply,
     GetAccountBalanceRequest,
-    GetBlockchainStatsRequest,
     GetBlocksByNumberReply,
     GetBlocksRangeRequest,
     GetCurrenciesReply,
@@ -107,15 +106,6 @@ export default class AnkrscanProvider {
      */
     async getCurrencies(params: GetCurrenciesRequest): Promise<GetCurrenciesReply> {
         return await this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
-    }
-
-    /**
-     * Returns blockchains stats.
-     * @param params A GetBlockchainStatsRequest object.
-     * @returns Promise<GetBlocksByNumberReply>
-     */
-    async getBlockchainStats(params: GetBlockchainStatsRequest): Promise<GetBlocksByNumberReply> {
-        return await this.send<GetBlocksByNumberReply>("ankr_getBlockchainStats", params)
     }
 
     private async send<TReply>(method: string, params: any): Promise<TReply> {
