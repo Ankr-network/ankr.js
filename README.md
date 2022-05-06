@@ -1,5 +1,5 @@
-# ankrscan.js
-Compact SDK for interacting with Ankr Scan MultiChain JSON-RPC API.
+# ankr.js
+Compact library for interacting with Ankr APIs.
 
 #### SDK supports following MultiChain methods:
 
@@ -21,28 +21,28 @@ During the launch stage, Ankr Scan offers free access to the API with no request
 
 ## Installation
 ```shell
-npm install ankrscan.js
+npm install ankr.js
 ```
 or
 ```shell
-yarn add ankrscan.js
+yarn add ankr.js
 ```
 
 ## Import
 node.js require
 ```javascript
-const { AnkrscanProvider } = require("ankrscan.js");
+const { AnkrscanProvider } = require("ankr.js");
 ```
 ES6 or TypeScript
 ```javascript
-import AnkrscanProvider from "ankrscan.js";
+import AnkrscanProvider from "ankr.js";
 ```
 
 ## Usage examples
 
 #### Instantiate provider
 ```javascript
-import AnkrscanProvider from "ankrscan.js";
+import AnkrscanProvider from "ankr.js";
 
 const provider = new AnkrscanProvider("YOUR-API-KEY")
 ```

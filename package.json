@@ -1,13 +1,13 @@
 {
-  "name": "ankrscan.js",
+  "name": "ankr.js",
   "keywords": [
     "ankr",
     "ankrscan",
     "blockchain",
     "sdk"
   ],
-  "version": "1.1.6",
-  "description": "Compact library for interacting with Ankr Scan MultiChain JSON-RPC.",
+  "version": "1.0.0",
+  "description": "Compact library for interacting with Ankr APIs.",
   "main": "./dist/index.js",
   "files": [
     "dist/*"
@@ -19,8 +19,8 @@
     "build": "tsc",
     "start": "tsc --watch"
   },
-  "repository": "https://github.com/Ankr-network/ankrscan.js.git",
-  "author": "Ankr Scan",
+  "repository": "https://github.com/Ankr-network/ankr.js.git",
+  "author": "Ankr",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.26.1",
