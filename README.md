@@ -1,4 +1,4 @@
-# ankr.js
+# Ankr APIs JavaScript SDK
 Compact library for interacting with Ankr APIs.
 
 #### SDK supports following MultiChain methods:
@@ -21,28 +21,28 @@ During the launch stage, Ankr Scan offers free access to the API with no request
 
 ## Installation
 ```shell
-npm install ankr.js
+npm i @ankr.com/ankr.js
 ```
 or
 ```shell
-yarn add ankr.js
+yarn add @ankr.com/ankr.js
 ```
 
 ## Import
 node.js require
 ```javascript
-const { AnkrscanProvider } = require("ankr.js");
+const { AnkrscanProvider } = require("@ankr.com/ankr.js");
 ```
 ES6 or TypeScript
 ```javascript
-import AnkrscanProvider from "ankr.js";
+import AnkrscanProvider from "@ankr.com/ankr.js";
 ```
 
 ## Usage examples
 
 #### Instantiate provider
 ```javascript
-import AnkrscanProvider from "ankr.js";
+import AnkrscanProvider from "@ankr.com/ankr.js";
 
 const provider = new AnkrscanProvider("YOUR-API-KEY")
 ```
