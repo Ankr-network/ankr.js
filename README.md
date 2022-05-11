@@ -7,6 +7,9 @@ Compact library for interacting with Ankr APIs.
 - `getBlocksRange` - blocks within specified range.
 - `getAccountBalance` - coin and token balances of the wallet.
 - `getNFTsByOwner` - NFT collectibles of the wallet.
+- `getNFTMetadata` - NFT's contract metadata.
+- `getTokenHolders` - list of token holders.
+- `getCurrencies` - currencies of blockchain.
 
 #### MultiChain support
 - ETH: `"eth"`
