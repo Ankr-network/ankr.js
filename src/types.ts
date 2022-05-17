@@ -2,7 +2,7 @@
 
 
 export interface GetNFTsByOwnerRequest {
-    blockchain?: string[];
+    blockchain?: string | string[];
     filter?: { [key: string]: string[] }[];
     walletAddress: string;
     pageToken?: string;
@@ -47,7 +47,6 @@ export interface NftAttributes {
     description: string;
     traits?: Attribute[];
     contractType: number;
-    fetched: boolean;
 }
 
 export interface NftMetadata {
@@ -72,11 +71,15 @@ export interface Balance {
     holderAddress: string;
     balance: string;
     balanceRawInteger: string;
+    balanceUsd: string;
+    tokenPrice: string;
+    thumbnail: string;
 }
 
 export interface GetAccountBalanceReply {
-    assets: Balance[];
     nextPageToken?: string;
+    totalBalanceUsd: string;
+    assets: Balance[];
 }
 
 export interface GetAccountBalanceRequest {
@@ -135,6 +138,23 @@ export interface GetUsdPriceReply {
     contractAddress?: string;
 }
 
+export interface EventInput {
+    name: string;
+    type: string;
+    indexed: boolean;
+    size: number;
+    valueDecoded: string;
+}
+
+export interface Event {
+    name: string;
+    inputs: EventInput[];
+    anonymous: boolean;
+    string: string;
+    signature: string;
+    id: string;
+}
+
 export interface Log {
     address: string;
     topics: string[];
@@ -145,24 +165,33 @@ export interface Log {
     blockHash: string;
     logIndex: string;
     removed: boolean;
+    event?: Event;
 }
 
 export interface GetLogsReply {
+    nextPageToken?: string;
     logs: Log[];
 }
 
 export interface GetLogsRequest {
-    blockchain: string;
+    blockchain: string | string[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
+    fromTimestamp?: number | "latest" | "earliest";
+    toTimestamp?: number | "latest" | "earliest";
     address?: string | string[];
     topics?: (string | string[])[];
+    pageToken?: string;
+    pageSize?: number;
+    descOrder?: boolean;
+    decodeLogs?: boolean;
 }
 
 export interface GetBlocksRangeRequest {
     blockchain: string;
-    fromBlock: number;
-    toBlock: number;
+    fromBlock?: number | "latest" | "earliest";
+    toBlock?: number | "latest" | "earliest";
+    descOrder?: boolean;
 }
 
 export interface Transaction {
@@ -188,6 +217,8 @@ export interface Transaction {
     transactionHash: string;
     hash: string;
     status: string;
+    blockchain: string;
+    timestamp: string;
 }
 
 export interface Block {
