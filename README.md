@@ -4,7 +4,7 @@ Compact library for interacting with Ankr APIs.
 #### SDK supports following MultiChain methods:
 
 - `getLogs` - logs matching the filter.
-- `getBlocksRange` - blocks within specified range.
+- `getBlocks` - blocks within specified range.
 - `getAccountBalance` - coin and token balances of the wallet.
 - `getNFTsByOwner` - NFT collectibles of the wallet.
 - `getNFTMetadata` - NFT's contract metadata.
@@ -52,21 +52,22 @@ const provider = new AnkrscanProvider("YOUR-API-KEY")
 
 #### Get logs
 ```javascript
-const filterLogs = async () => {
+const logs = async () => {
     return await provider.getLogs({
         blockchain: "eth",
         fromBlock: 1181739,
         toBlock: 1181739,
         topics: [[], ["0x000000000000000000000000feb92d30bf01ff9a1901666c5573532bfa07eeec"]],
-        address: "0x3589d05a1ec4af9f65b0e5554e645707775ee43c"
+        address: "0x3589d05a1ec4af9f65b0e5554e645707775ee43c",
+        decodeLogs: false
     })
 }
 ```
 
 #### Get blocks
 ```javascript
-const getBlocks = async () => {
-    return await provider.getBlocksRange({
+const blocks = async () => {
+    return await provider.getBlocks({
         blockchain: "bsc",
         fromBlock: 100,
         toBlock: 200
@@ -76,7 +77,7 @@ const getBlocks = async () => {
 
 #### Get account balances
 ```javascript
-const getBalances = async () => {
+const balances = async () => {
     return await provider.getAccountBalance({
         blockchain: "eth",
         walletAddress: "0xfa9019df60d3c710d7d583b2d69e18d412257617"
@@ -86,7 +87,7 @@ const getBalances = async () => {
 
 #### Get NFTs
 ```javascript
-const getNFTs = async () => {
+const nfts = async () => {
     return await provider.getNFTsByOwner({
         blockchain: "eth",
         walletAddress: "0x0E11A192d574b342C51be9e306694C41547185DD",
@@ -99,7 +100,7 @@ const getNFTs = async () => {
 ```
 #### Get token holders
 ```javascript
-const getTokenHolders = async () => {
+const tokenHolders = async () => {
     return await provider.getTokenHolders({
         blockchain: "eth",
         contractAddress: "0xdac17f958d2ee523a2206206994597c13d831ec7"
@@ -109,7 +110,7 @@ const getTokenHolders = async () => {
 
 #### Get currencies
 ```javascript
-const getCurrencies = async () => {
+const currencies = async () => {
     return await provider.getCurrencies({blockchain: "fantom"})
 }
 ```

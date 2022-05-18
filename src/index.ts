@@ -50,8 +50,8 @@ export default class AnkrscanProvider {
      * @param params A GetBlocksRangeRequest object.
      * @returns Promise<GetBlocksByNumberReply>
      */
-    async getBlocksRange(params: GetBlocksRangeRequest): Promise<GetBlocksByNumberReply> {
-        return await this.send<GetBlocksByNumberReply>("ankr_getBlocksRange", params)
+    async getBlocks(params: GetBlocksRangeRequest): Promise<GetBlocksByNumberReply> {
+        return await this.send<GetBlocksByNumberReply>("ankr_getBlocks", params)
     }
 
     /**
