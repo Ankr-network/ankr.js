@@ -83,7 +83,7 @@ export interface GetAccountBalanceReply {
 }
 
 export interface GetAccountBalanceRequest {
-    blockchain?: string;
+    blockchain?: string | string[];
     walletAddress: string;
     pageToken?: string;
     pageSize?: number;
@@ -153,6 +153,7 @@ export interface Event {
     string: string;
     signature: string;
     id: string;
+    verified: boolean;
 }
 
 export interface Log {
@@ -192,6 +193,24 @@ export interface GetBlocksRangeRequest {
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
     descOrder?: boolean;
+    decodeLogs?: boolean;
+    decodeTxData?: boolean;
+}
+
+export interface MethodInput {
+    name: string;
+    type: string;
+    size: number;
+    valueDecoded: string;
+}
+
+export interface Method {
+    name: string;
+    inputs: MethodInput[];
+    string: string;
+    signature: string;
+    id: string;
+    verified: boolean;
 }
 
 export interface Transaction {
@@ -219,6 +238,7 @@ export interface Transaction {
     status: string;
     blockchain: string;
     timestamp: string;
+    method?: Method;
 }
 
 export interface Block {
