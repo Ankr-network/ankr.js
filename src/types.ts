@@ -269,16 +269,13 @@ export interface GetBlocksByNumberReply {
     blocks: Block[];
 }
 
-export interface GetBlockchainStatsRequest {
+export interface GetTransactionsByHashRequest {
     blockchain?: string | string[];
+    transactionHash: string;
+    decodeLogs?: boolean;
+    decodeTxData?: boolean;
 }
 
-export interface BlockchainStat {
-    blockchain: string;
-    transactionsCount: number;
-    eventsCount: number;
-}
-
-export interface GetBlockchainStatsReply {
-    stats: BlockchainStat[];
+export interface GetTransactionsByHashReply {
+    transactions: Transaction[];
 }

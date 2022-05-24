@@ -5,6 +5,7 @@ Compact library for interacting with Ankr APIs.
 
 - `getLogs` - logs matching the filter.
 - `getBlocks` - blocks within specified range.
+- `getTransactionsByHash` - transaction(s) by hash.
 - `getAccountBalance` - coin and token balances of the wallet.
 - `getNFTsByOwner` - NFT collectibles of the wallet.
 - `getNFTMetadata` - NFT's contract metadata.
@@ -71,6 +72,16 @@ const blocks = async () => {
         blockchain: "bsc",
         fromBlock: 100,
         toBlock: 200
+    })
+}
+```
+
+#### Get transactions
+```javascript
+const transactions = async () => {
+    return await provider.getTransactionsByHash({
+        transactionHash: "0x82c13aaac6f0b6471afb94a3a64ae89d45baa3608ad397621dbb0d847f51196f",
+        decodeTxData: true
     })
 }
 ```

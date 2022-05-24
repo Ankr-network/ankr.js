@@ -13,7 +13,7 @@ import {
     GetNFTsByOwnerReply,
     GetNFTsByOwnerRequest,
     GetTokenHoldersReply,
-    GetTokenHoldersRequest,
+    GetTokenHoldersRequest, GetTransactionsByHashReply, GetTransactionsByHashRequest,
     GetUsdPriceReply,
     GetUsdPriceRequest
 } from "./types";
@@ -52,6 +52,15 @@ export default class AnkrscanProvider {
      */
     async getBlocks(params: GetBlocksRangeRequest): Promise<GetBlocksByNumberReply> {
         return await this.send<GetBlocksByNumberReply>("ankr_getBlocks", params)
+    }
+
+    /**
+     * Returns the Transaction(s) with specified hash among all supported blockchains.
+     * @param params A GetTransactionsByHashRequest object.
+     * @returns Promise<GetTransactionsByHashReply>
+     */
+    async getTransactionsByHash(params: GetTransactionsByHashRequest): Promise<GetTransactionsByHashReply> {
+        return await this.send<GetTransactionsByHashReply>("ankr_getTransactionsByHash", params)
     }
 
     /**
