@@ -14,6 +14,8 @@ import {
     GetNFTsByOwnerRequest,
     GetTokenHoldersReply,
     GetTokenHoldersRequest, GetTransactionsByHashReply, GetTransactionsByHashRequest,
+    GetTokenHoldersCountRequest,
+    GetTokenHoldersCountReply,
     GetUsdPriceReply,
     GetUsdPriceRequest
 } from "./types";
@@ -97,6 +99,15 @@ export default class AnkrscanProvider {
      */
     async getTokenHolders(params: GetTokenHoldersRequest): Promise<GetTokenHoldersReply> {
         return await this.send<GetTokenHoldersReply>("ankr_getTokenHolders", params)
+    }
+
+    /**
+     * Returns list of historical token holders count by day.
+     * @param params A GetTokenHoldersCountRequest object.
+     * @returns Promise<GetTokenHoldersCountReply>
+     */
+    async getTokenHoldersCount(params: GetTokenHoldersCountRequest): Promise<GetTokenHoldersCountReply> {
+        return await this.send<GetTokenHoldersCountReply>("ankr_getTokenHoldersCount", params)
     }
 
     /**

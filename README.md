@@ -10,6 +10,7 @@ Compact library for interacting with Ankr APIs.
 - `getNFTsByOwner` - NFT collectibles of the wallet.
 - `getNFTMetadata` - NFT's contract metadata.
 - `getTokenHolders` - list of token holders.
+- `getTokenHoldersCount` - token holders count history by day.
 - `getCurrencies` - currencies of blockchain.
 
 #### MultiChain support
@@ -118,7 +119,15 @@ const tokenHolders = async () => {
     })
 }
 ```
-
+#### Get token holders count history
+```javascript
+const tokenHoldersCount = async () => {
+    return await provider.getTokenHoldersCount({
+        blockchain: "eth",
+        contractAddress: "0xdac17f958d2ee523a2206206994597c13d831ec7"
+    })
+}
+```
 #### Get currencies
 ```javascript
 const currencies = async () => {
