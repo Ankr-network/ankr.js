@@ -2,7 +2,7 @@
 
 
 export interface GetNFTsByOwnerRequest {
-    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
+    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin')[];
     filter?: {[key: string]: string[]}[];
     walletAddress: string;
     pageToken?: string;
@@ -79,7 +79,7 @@ export interface GetAccountBalanceReply {
     assets: Balance[];
 }
 export interface GetAccountBalanceRequest {
-    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
+    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin')[];
     walletAddress: string;
     pageToken?: string;
     pageSize?: number;
@@ -178,7 +178,7 @@ export interface GetLogsReply {
     logs: Log[];
 }
 export interface GetLogsRequest {
-    blockchain: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
+    blockchain: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin')[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
     fromTimestamp?: number | "latest" | "earliest";
@@ -266,7 +266,7 @@ export interface GetBlocksByNumberReply {
     blocks: Block[];
 }
 export interface GetTransactionsByHashRequest {
-    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
+    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | 'syscoin')[];
     transactionHash: string;
     decodeLogs?: boolean;
     decodeTxData?: boolean;
