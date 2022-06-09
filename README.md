@@ -20,6 +20,7 @@ Compact library for interacting with Ankr APIs.
 - Fantom: `"fantom"`
 - Arbitrum: `"arbitrum"`
 - Avalanche: `"avalanche"`
+- Syscoin NEVM: `"syscoin"`
 
 ### Acquire an API key
 During the launch stage, Ankr Scan offers free access to the API with no request limits. That is, you can access the API without acquiring an API key. Later on Ankr Scan API will become a part of Ankr Protocol [Premium Plan](https://www.ankr.com/protocol/plan/).
