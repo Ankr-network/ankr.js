@@ -2,7 +2,7 @@
 
 
 export interface GetNFTsByOwnerRequest {
-    blockchain?: string | string[];
+    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
     filter?: {[key: string]: string[]}[];
     walletAddress: string;
     pageToken?: string;
@@ -79,7 +79,7 @@ export interface GetAccountBalanceReply {
     assets: Balance[];
 }
 export interface GetAccountBalanceRequest {
-    blockchain?: string | string[];
+    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
     walletAddress: string;
     pageToken?: string;
     pageSize?: number;
@@ -178,7 +178,7 @@ export interface GetLogsReply {
     logs: Log[];
 }
 export interface GetLogsRequest {
-    blockchain: string | string[];
+    blockchain: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
     fromTimestamp?: number | "latest" | "earliest";
@@ -266,7 +266,7 @@ export interface GetBlocksByNumberReply {
     blocks: Block[];
 }
 export interface GetTransactionsByHashRequest {
-    blockchain?: string | string[];
+    blockchain?: 'eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche' | ('eth' | 'bsc' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche')[];
     transactionHash: string;
     decodeLogs?: boolean;
     decodeTxData?: boolean;
