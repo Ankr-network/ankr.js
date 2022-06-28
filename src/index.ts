@@ -2,8 +2,8 @@ import axios, {AxiosRequestConfig} from 'axios';
 import {
     GetAccountBalanceReply,
     GetAccountBalanceRequest,
-    GetBlocksByNumberReply,
-    GetBlocksRangeRequest,
+    GetBlocksReply,
+    GetBlocksRequest,
     GetCurrenciesReply,
     GetCurrenciesRequest,
     GetLogsReply,
@@ -12,10 +12,12 @@ import {
     GetNFTMetadataRequest,
     GetNFTsByOwnerReply,
     GetNFTsByOwnerRequest,
-    GetTokenHoldersReply,
-    GetTokenHoldersRequest, GetTransactionsByHashReply, GetTransactionsByHashRequest,
-    GetTokenHoldersCountRequest,
     GetTokenHoldersCountReply,
+    GetTokenHoldersCountRequest,
+    GetTokenHoldersReply,
+    GetTokenHoldersRequest,
+    GetTransactionsByHashReply,
+    GetTransactionsByHashRequest,
     GetUsdPriceReply,
     GetUsdPriceRequest
 } from "./types";
@@ -49,11 +51,11 @@ export default class AnkrscanProvider {
 
     /**
      * Returns the array of Block within specified range.
-     * @param params A GetBlocksRangeRequest object.
-     * @returns Promise<GetBlocksByNumberReply>
+     * @param params A GetBlocksRequest object.
+     * @returns Promise<GetBlocksReply>
      */
-    async getBlocks(params: GetBlocksRangeRequest): Promise<GetBlocksByNumberReply> {
-        return await this.send<GetBlocksByNumberReply>("ankr_getBlocks", params)
+    async getBlocks(params: GetBlocksRequest): Promise<GetBlocksReply> {
+        return await this.send<GetBlocksReply>("ankr_getBlocks", params)
     }
 
     /**
