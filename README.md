@@ -126,8 +126,6 @@ const balances = async () => {
 Get data about all the NFTs (collectibles) owned by a wallet.
 
 ````javascript
-
-```javascript
 const nfts = async () => {
   return await provider.getNFTsByOwner({
     blockchain: 'eth',
