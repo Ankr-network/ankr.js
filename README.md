@@ -25,7 +25,7 @@ const provider = new AnkrscanProvider('');
 const provider = new AnkrscanProvider('YOUR_API_KEY');
 ```
 
-####3. Use the provider and call one of the supported methods
+#### 3. Use the provider and call one of the supported methods
 
 ```javascript
 await provider.getNFTsByOwner({
