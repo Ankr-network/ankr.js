@@ -24,13 +24,13 @@ import {
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
 
-export default class AnkrscanProvider {
+export default class AnkrProvider {
     url: string
     request_config: AxiosRequestConfig
     _nextId: number
 
     /**
-     * Constructs an instance of AnkrscanProvider.
+     * Constructs an instance of AnkrProvider.
      * @param apiKey The API key for authorization.
      * @param endpoint Ankr Scan MultiChain RPC endpoint.
      */
@@ -133,7 +133,7 @@ export default class AnkrscanProvider {
     private async send<TReply>(method: string, params: any): Promise<TReply> {
         const request = {method: method, params: params, id: (this._nextId++), jsonrpc: "2.0"};
         const response = await axios.post<JsonRPCPayload>(this.url, JSON.stringify(request), this.request_config);
-        return <TReply>AnkrscanProvider.getResult(response.data)
+        return <TReply>AnkrProvider.getResult(response.data)
     }
 
     private static getResult(payload: JsonRPCPayload): any {

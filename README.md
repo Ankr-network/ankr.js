@@ -17,12 +17,12 @@ yarn add @ankr.com/ankr.js
 #### 2. Initialize the provider
 
 ```javascript
-import AnkrscanProvider from '@ankr.com/ankr.js';
+import AnkrProvider from '@ankr.com/ankr.js';
 
-const provider = new AnkrscanProvider('');
+const provider = new AnkrProvider('');
 
 // or if you have a premium account
-const provider = new AnkrscanProvider('YOUR_API_KEY');
+const provider = new AnkrProvider('YOUR_API_KEY');
 ```
 
 #### 3. Use the provider and call one of the supported methods
