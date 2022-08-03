@@ -26,7 +26,7 @@ type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string },
 
 export default class AnkrProvider {
     url: string
-    request_config: AxiosRequestConfig
+    requestConfig: AxiosRequestConfig
     _nextId: number
 
     /**
@@ -36,17 +36,17 @@ export default class AnkrProvider {
      */
     constructor(apiKey: string, endpoint: string = "https://rpc.ankr.com/multichain/") {
         this.url = endpoint + apiKey
-        this.request_config = {headers: {'Content-Type': 'application/json'}};
+        this.requestConfig = {headers: {'Content-Type': 'application/json'}};
         this._nextId = 1
     }
 
     /**
      * Returns the array of Log matching the filter.
-     @param params A GetLogsRequest object.
+     * @param params A GetLogsRequest object.
      * @returns Promise<GetLogsReply>
      */
     async getLogs(params: GetLogsRequest): Promise<GetLogsReply> {
-        return await this.send<GetLogsReply>("ankr_getLogs", params)
+        return this.send<GetLogsReply>("ankr_getLogs", params)
     }
 
     /**
@@ -55,7 +55,7 @@ export default class AnkrProvider {
      * @returns Promise<GetBlocksReply>
      */
     async getBlocks(params: GetBlocksRequest): Promise<GetBlocksReply> {
-        return await this.send<GetBlocksReply>("ankr_getBlocks", params)
+        return this.send<GetBlocksReply>("ankr_getBlocks", params)
     }
 
     /**
@@ -64,7 +64,7 @@ export default class AnkrProvider {
      * @returns Promise<GetTransactionsByHashReply>
      */
     async getTransactionsByHash(params: GetTransactionsByHashRequest): Promise<GetTransactionsByHashReply> {
-        return await this.send<GetTransactionsByHashReply>("ankr_getTransactionsByHash", params)
+        return this.send<GetTransactionsByHashReply>("ankr_getTransactionsByHash", params)
     }
 
     /**
@@ -73,7 +73,7 @@ export default class AnkrProvider {
      * @returns Promise<Balance[]>
      */
     async getAccountBalance(params: GetAccountBalanceRequest): Promise<GetAccountBalanceReply> {
-        return await this.send<GetAccountBalanceReply>("ankr_getAccountBalance", params)
+        return this.send<GetAccountBalanceReply>("ankr_getAccountBalance", params)
     }
 
     /**
@@ -82,7 +82,7 @@ export default class AnkrProvider {
      * @returns Promise<GetNFTsByOwnerReply>
      */
     async getNFTsByOwner(params: GetNFTsByOwnerRequest): Promise<GetNFTsByOwnerReply> {
-        return await this.send<GetNFTsByOwnerReply>("ankr_getNFTsByOwner", params)
+        return this.send<GetNFTsByOwnerReply>("ankr_getNFTsByOwner", params)
     }
 
     /**
@@ -100,7 +100,7 @@ export default class AnkrProvider {
      * @returns Promise<GetTokenHoldersReply>
      */
     async getTokenHolders(params: GetTokenHoldersRequest): Promise<GetTokenHoldersReply> {
-        return await this.send<GetTokenHoldersReply>("ankr_getTokenHolders", params)
+        return this.send<GetTokenHoldersReply>("ankr_getTokenHolders", params)
     }
 
     /**
@@ -109,7 +109,7 @@ export default class AnkrProvider {
      * @returns Promise<GetTokenHoldersCountReply>
      */
     async getTokenHoldersCount(params: GetTokenHoldersCountRequest): Promise<GetTokenHoldersCountReply> {
-        return await this.send<GetTokenHoldersCountReply>("ankr_getTokenHoldersCount", params)
+        return this.send<GetTokenHoldersCountReply>("ankr_getTokenHoldersCount", params)
     }
 
     /**
@@ -118,7 +118,7 @@ export default class AnkrProvider {
      * @returns Promise<GetUsdPriceReply>
      */
     async getTokenPrice(params: GetUsdPriceRequest): Promise<GetUsdPriceReply> {
-        return await this.send<GetUsdPriceReply>("ankr_getTokenPrice", params)
+        return this.send<GetUsdPriceReply>("ankr_getTokenPrice", params)
     }
 
     /**
@@ -127,13 +127,13 @@ export default class AnkrProvider {
      * @returns Promise<GetCurrenciesReply>
      */
     async getCurrencies(params: GetCurrenciesRequest): Promise<GetCurrenciesReply> {
-        return await this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
+        return this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
     }
 
     private async send<TReply>(method: string, params: any): Promise<TReply> {
-        const request = {method: method, params: params, id: (this._nextId++), jsonrpc: "2.0"};
-        const response = await axios.post<JsonRPCPayload>(this.url, JSON.stringify(request), this.request_config);
-        return <TReply>AnkrProvider.getResult(response.data)
+        const request = {method, params, id: (this._nextId++), jsonrpc: "2.0"};
+        const response = await axios.post<JsonRPCPayload>(this.url, JSON.stringify(request), this.requestConfig);
+        return AnkrProvider.getResult(response.data) as TReply
     }
 
     private static getResult(payload: JsonRPCPayload): any {
