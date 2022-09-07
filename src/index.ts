@@ -14,16 +14,19 @@ import {
     GetNFTMetadataRequest,
     GetNFTsByOwnerReply,
     GetNFTsByOwnerRequest,
+    GetNftTransfersReply,
     GetTokenHoldersCountReply,
     GetTokenHoldersCountRequest,
     GetTokenHoldersReply,
     GetTokenHoldersRequest,
     GetTokenPriceReply,
     GetTokenPriceRequest,
+    GetTokenTransfersReply,
     GetTransactionsByAddressReply,
     GetTransactionsByAddressRequest,
     GetTransactionsByHashReply,
     GetTransactionsByHashRequest,
+    GetTransfersRequest,
 } from "./types";
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
@@ -78,6 +81,24 @@ export default class AnkrProvider {
      */
     async getTransactionsByAddress(params: GetTransactionsByAddressRequest): Promise<GetTransactionsByAddressReply> {
         return this.send<GetTransactionsByAddressReply>("ankr_getTransactionsByAddress", params)
+    }
+
+    /**
+     * Returns Transfers of specified address.
+     * @param params A GetTransfersRequest object.
+     * @returns Promise<GetTokenTransfersReply>
+     */
+    async getTokenTransfers(params: GetTransfersRequest): Promise<GetTokenTransfersReply> {
+        return this.send<GetTokenTransfersReply>("ankr_getTokenTransfers", params)
+    }
+
+    /**
+     * Returns NFT Transfers of specified address.
+     * @param params A GetNftTransfersRequest object.
+     * @returns Promise<GetNftTransfersReply>
+     */
+    async getNftTransfers(params: GetTransfersRequest): Promise<GetNftTransfersReply> {
+        return this.send<GetNftTransfersReply>("ankr_getNftTransfers", params)
     }
 
     /**
@@ -167,4 +188,34 @@ export default class AnkrProvider {
         }
         return payload.result;
     }
+}
+
+export {
+    GetAccountBalanceReply,
+    GetAccountBalanceRequest,
+    GetBlocksReply,
+    GetBlocksRequest,
+    GetCurrenciesReply,
+    GetCurrenciesRequest,
+    GetLogsReply,
+    GetLogsRequest,
+    GetNFTHoldersReply,
+    GetNFTHoldersRequest,
+    GetNFTMetadataReply,
+    GetNFTMetadataRequest,
+    GetNFTsByOwnerReply,
+    GetNFTsByOwnerRequest,
+    GetNftTransfersReply,
+    GetTokenHoldersCountReply,
+    GetTokenHoldersCountRequest,
+    GetTokenHoldersReply,
+    GetTokenHoldersRequest,
+    GetTokenPriceReply,
+    GetTokenPriceRequest,
+    GetTokenTransfersReply,
+    GetTransactionsByAddressReply,
+    GetTransactionsByAddressRequest,
+    GetTransactionsByHashReply,
+    GetTransactionsByHashRequest,
+    GetTransfersRequest,
 }
