@@ -26,7 +26,7 @@ export interface Nft {
     imageUrl: string;
     collectionName: string;
     symbol: string;
-    contractType: number;
+    contractType: 'ERC721' | 'ERC1155' | 'UNDEFINED';
     contractAddress: string;
     quantity?: string;
     traits?: Attribute[];
@@ -47,17 +47,29 @@ export interface NftAttributes {
     name: string;
     description: string;
     traits?: Attribute[];
-    contractType: number;
+    contractType: 'ERC721' | 'ERC1155' | 'UNDEFINED';
 }
 export interface NftMetadata {
     blockchain: Blockchain;
     contractAddress: string;
     tokenId: string;
-    contractType: number;
+    contractType: 'ERC721' | 'ERC1155' | 'UNDEFINED';
+    collectionName: string;
+    collectionSymbol: string;
 }
 export interface GetNFTMetadataReply {
     metadata?: NftMetadata;
     attributes?: NftAttributes;
+}
+export interface GetNFTHoldersRequest {
+    blockchain?: Blockchain;
+    contractAddress: string;
+    pageToken?: string;
+    pageSize?: number;
+}
+export interface GetNFTHoldersReply {
+    holders: string[];
+    nextPageToken: string;
 }
 export interface Balance {
     blockchain: string;
@@ -136,11 +148,11 @@ export interface CurrencyDetailsExtended {
 export interface GetCurrenciesReply {
     currencies: CurrencyDetailsExtended[];
 }
-export interface GetUsdPriceRequest {
+export interface GetTokenPriceRequest {
     blockchain: Blockchain;
     contractAddress: string;
 }
-export interface GetUsdPriceReply {
+export interface GetTokenPriceReply {
     usdPrice: string;
     blockchain: Blockchain;
     contractAddress?: string;
@@ -215,27 +227,27 @@ export interface Method {
     verified: boolean;
 }
 export interface Transaction {
-    v: string;
-    r: string;
-    s: string;
-    nonce: string;
-    from: string;
-    gas: string;
-    gasPrice: string;
-    input: string;
+    v?: string;
+    r?: string;
+    s?: string;
+    nonce?: string;
     blockNumber: string;
+    from: string;
     to?: string;
+    gas?: string;
+    gasPrice?: string;
+    input?: string;
     transactionIndex: string;
     blockHash: string;
     value: string;
-    type: string;
+    type?: string;
     contractAddress?: string;
-    cumulativeGasUsed: string;
-    gasUsed: string;
-    logs: Log[];
-    logsBloom: string;
-    transactionHash: string;
-    hash: string;
+    cumulativeGasUsed?: string;
+    gasUsed?: string;
+    logs?: Log[];
+    logsBloom?: string;
+    transactionHash?: string;
+    hash?: string;
     status: string;
     blockchain: string;
     timestamp: string;
@@ -277,9 +289,16 @@ export interface GetTransactionsByHashRequest {
 export interface GetTransactionsByHashReply {
     transactions: Transaction[];
 }
-export type Blockchain = 'eth'
-    | 'bsc'
-    | 'polygon'
-    | 'fantom'
-    | 'arbitrum'
-    | 'avalanche';
+export interface GetTransactionsByAddressRequest {
+    blockchain?: Blockchain;
+    walletAddress: string;
+    timestamp?: number;
+    orderAsc?: boolean;
+    pageToken?: string;
+    pageSize?: number;
+}
+export interface GetTransactionsByAddressReply {
+    transactions: Transaction[];
+    nextPageToken: string;
+}
+export type Blockchain = 'arbitrum' | 'avalanche' | 'bsc' | 'eth' | 'fantom' | 'polygon' | 'syscoin' | 'optimism';

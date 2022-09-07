@@ -19,7 +19,7 @@ yarn add @ankr.com/ankr.js
 ```javascript
 import AnkrProvider from '@ankr.com/ankr.js';
 
-const provider = new AnkrProvider('');
+const provider = new AnkrProvider();
 
 // or if you have a premium account
 const provider = new AnkrProvider('YOUR_API_KEY');
@@ -45,12 +45,15 @@ await provider.getNFTsByOwner({
 - Arbitrum: `"arbitrum"`
 - Avalanche: `"avalanche"`
 - Syscoin NEVM: `"syscoin"`
+- Optimism: `"optimism"`
 
 ## Available methods
 
 `ankr.js` supports the following methods:
 
 - [`getNFTsByOwner`](#getnftsbyowner)
+- `getNFTMetadata`
+- `getNFTHolders`
 - [`getTokenHolders`](#gettokenholders)
 - [`getAccountBalance`](#getaccountbalance)
 - [`getTokenHoldersCount`](#gettokenholderscount)
@@ -58,7 +61,8 @@ await provider.getNFTsByOwner({
 - [`getLogs`](#getlogs)
 - [`getBlocks`](#getblocks)
 - [`getTransactionsByHash`](#gettransactionsbyhash)
-- `getNFTMetadata`
+- `getTransactionsByAddress`
+- `getTokenPrice`
 
 #### `getLogs`
 

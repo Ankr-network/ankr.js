@@ -8,6 +8,8 @@ import {
     GetCurrenciesRequest,
     GetLogsReply,
     GetLogsRequest,
+    GetNFTHoldersReply,
+    GetNFTHoldersRequest,
     GetNFTMetadataReply,
     GetNFTMetadataRequest,
     GetNFTsByOwnerReply,
@@ -16,10 +18,12 @@ import {
     GetTokenHoldersCountRequest,
     GetTokenHoldersReply,
     GetTokenHoldersRequest,
+    GetTokenPriceReply,
+    GetTokenPriceRequest,
+    GetTransactionsByAddressReply,
+    GetTransactionsByAddressRequest,
     GetTransactionsByHashReply,
     GetTransactionsByHashRequest,
-    GetUsdPriceReply,
-    GetUsdPriceRequest
 } from "./types";
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
@@ -34,7 +38,7 @@ export default class AnkrProvider {
      * @param apiKey The API key for authorization.
      * @param endpoint Ankr Scan MultiChain RPC endpoint.
      */
-    constructor(apiKey: string, endpoint: string = "https://rpc.ankr.com/multichain/") {
+    constructor(apiKey: string = "", endpoint: string = "https://rpc.ankr.com/multichain/") {
         this.url = endpoint + apiKey
         this.requestConfig = {headers: {'Content-Type': 'application/json'}};
         this._nextId = 1
@@ -68,6 +72,15 @@ export default class AnkrProvider {
     }
 
     /**
+     * Returns Transactions of specified address.
+     * @param params A GetTransactionsByAddressRequest object.
+     * @returns Promise<GetTransactionsByAddressReply>
+     */
+    async getTransactionsByAddress(params: GetTransactionsByAddressRequest): Promise<GetTransactionsByAddressReply> {
+        return this.send<GetTransactionsByAddressReply>("ankr_getTransactionsByAddress", params)
+    }
+
+    /**
      * Returns coin and token balances of the wallet.
      * @param params A GetAccountBalanceRequest object.
      * @returns Promise<Balance[]>
@@ -95,6 +108,15 @@ export default class AnkrProvider {
     }
 
     /**
+     * Returns NFT's holders.
+     * @param params A GetNFTHoldersRequest object.
+     * @returns Promise<GetNFTHoldersRequest>
+     */
+    async getNFTHolders(params: GetNFTHoldersRequest): Promise<GetNFTHoldersReply> {
+        return await this.send<GetNFTHoldersReply>("ankr_getNFTHolders", params)
+    }
+
+    /**
      * Returns list of token holders.
      * @param params A GetTokenHoldersRequest object.
      * @returns Promise<GetTokenHoldersReply>
@@ -113,12 +135,12 @@ export default class AnkrProvider {
     }
 
     /**
-     * Returns list of currencies.
-     * @param params A GetUsdPriceRequest object.
-     * @returns Promise<GetUsdPriceReply>
+     * Returns token USD price.
+     * @param params A GetTokenPriceRequest object.
+     * @returns Promise<GetTokenPriceReply>
      */
-    async getTokenPrice(params: GetUsdPriceRequest): Promise<GetUsdPriceReply> {
-        return this.send<GetUsdPriceReply>("ankr_getTokenPrice", params)
+    async getTokenPrice(params: GetTokenPriceRequest): Promise<GetTokenPriceReply> {
+        return this.send<GetTokenPriceReply>("ankr_getTokenPrice", params)
     }
 
     /**
