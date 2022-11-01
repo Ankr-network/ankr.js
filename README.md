@@ -186,8 +186,8 @@ You can provide **only one param**: `from_timestamp` or `to_timestamp`. Timestam
 If a `from_timestamp` is not supplied, the `interval` will be applied in reverse from `to_timestamp`
 if no `to_timestamp` => take by period & limit
 ```
-----------from_time----|p1----|p2----|pN---->
-----pN|----p2|----p1|----to_time------------>
+from_timestamp----|p1|----|p2|----|pN|---->
+<----|pN|----|p2|----|p1|----to_timestamp
 ```
 Defaults:
 defaultInterval - 24 hours
