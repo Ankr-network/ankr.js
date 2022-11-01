@@ -182,12 +182,12 @@ const currencies = async () => {
 #### `getTokenPriceHistory`
 
 Shows price history for provided token on specific chain
-You can provide **only one param**: `from_timestamp` or `to_timestamp`. Timestamps and intervals must be provided in seconds.
-If a `from_timestamp` is not supplied, the `interval` will be applied in reverse from `to_timestamp`
-if no `to_timestamp` => take by period & limit
+You can provide **only one param**: `fromTimestamp` or `toTimestamp`. Timestamps and intervals must be provided in seconds.
+If a `fromTimestamp` is not supplied, the `interval` will be applied in reverse from `toTimestamp`
+if no `toTimestamp` => take by period & limit
 ```
-from_timestamp----|p1|----|p2|----|pN|---->
-<----|pN|----|p2|----|p1|----to_timestamp
+fromTimestamp----|p1|----|p2|----|pN|---->
+<----|pN|----|p2|----|p1|----toTimestamp
 ```
 Defaults:
 defaultInterval - 24 hours
@@ -200,7 +200,7 @@ const prices = async () => {
   return await provider.getTokenPriceHistory({
         blockchain: "eth",
         contractAddress: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-        from_timestamp: 1667195581, 
+        fromTimestamp: 1667195581, 
         interval: 86400, // 24h
         limit: 337
   });

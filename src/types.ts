@@ -294,15 +294,15 @@ export interface GetTransactionsByHashReply {
 export interface GetTokenPriceHistoryRequest {
     blockchain: Blockchain;
     contractAddress: string;
-    from_timestamp?: number;
-    to_timestamp?: number;
+    fromTimestamp?: number;
+    toTimestamp?: number;
     interval?: number;
     limit?: number;
 }
 export interface Quote {
     timestamp: number;
-    block_height: number;
-    usd_price: string;
+    blockHeight: number;
+    usdPrice: string;
 }
 export interface GetTokenPriceHistoryReply {
     quotes: Quote[];
