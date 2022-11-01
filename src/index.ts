@@ -24,6 +24,9 @@ import {
     GetTransactionsByAddressRequest,
     GetTransactionsByHashReply,
     GetTransactionsByHashRequest,
+    GetTokenPriceHistoryRequest,
+    GetTokenPriceHistoryReply,
+
 } from "./types";
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
@@ -150,6 +153,14 @@ export default class AnkrProvider {
      */
     async getCurrencies(params: GetCurrenciesRequest): Promise<GetCurrenciesReply> {
         return this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
+    }
+    /**
+     * Shows price history for provided token on specific chain
+     * @param params A GetTokenPriceHistoryRequest object.
+     * @returns Promise<GetTokenPriceHistoryReply>
+     */
+    async getTokenPriceHistory(params: GetTokenPriceHistoryRequest): Promise<GetTokenPriceHistoryReply> {
+        return this.send<GetTokenPriceHistoryReply>("ankr_getTokenPriceHistory", params)
     }
 
     private async send<TReply>(method: string, params: any): Promise<TReply> {
