@@ -185,7 +185,10 @@ Shows price history for provided token on specific chain
 You can provide **only one param**: `from_timestamp` or `to_timestamp`. Timestamps and intervals must be provided in seconds.
 If a `from_timestamp` is not supplied, the `interval` will be applied in reverse from `to_timestamp`
 if no `to_timestamp` => take by period & limit
-
+```
+----------from_time----|p1----|p2----|pN---->
+----pN|----p2|----p1|----to_time------------>
+```
 Defaults:
 defaultInterval - 24 hours
 maxInterval - 365 days
