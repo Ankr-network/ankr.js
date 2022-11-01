@@ -62,7 +62,7 @@ export interface GetNFTMetadataReply {
     attributes?: NftAttributes;
 }
 export interface GetNFTHoldersRequest {
-    blockchain?: Blockchain;
+    blockchain: Blockchain;
     contractAddress: string;
     pageToken?: string;
     pageSize?: number;
@@ -72,7 +72,7 @@ export interface GetNFTHoldersReply {
     nextPageToken: string;
 }
 export interface Balance {
-    blockchain: string;
+    blockchain: Blockchain;
     tokenName: string;
     tokenSymbol: string;
     tokenDecimals: number;
@@ -93,6 +93,7 @@ export interface GetAccountBalanceReply {
 export interface GetAccountBalanceRequest {
     blockchain?: Blockchain | (Blockchain)[];
     walletAddress: string;
+    onlyWhitelisted?: boolean;
     pageToken?: string;
     pageSize?: number;
 }
@@ -174,6 +175,7 @@ export interface Event {
     verified: boolean;
 }
 export interface Log {
+    blockchain: Blockchain;
     address: string;
     topics: string[];
     data: string;
@@ -193,10 +195,10 @@ export interface GetLogsRequest {
     blockchain: Blockchain | (Blockchain)[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
+    address?: string[];
+    topics?: (string | string[])[];
     fromTimestamp?: number | "latest" | "earliest";
     toTimestamp?: number | "latest" | "earliest";
-    address?: string | string[];
-    topics?: (string | string[])[];
     pageToken?: string;
     pageSize?: number;
     descOrder?: boolean;
@@ -288,6 +290,22 @@ export interface GetTransactionsByHashRequest {
 }
 export interface GetTransactionsByHashReply {
     transactions: Transaction[];
+}
+export interface GetTokenPriceHistoryRequest {
+    blockchain: Blockchain;
+    contractAddress: string;
+    from_timestamp?: number;
+    to_timestamp?: number;
+    interval?: number;
+    limit?: number;
+}
+export interface Quote {
+    timestamp: number;
+    block_height: number;
+    usd_price: string;
+}
+export interface GetTokenPriceHistoryReply {
+    quotes: Quote[];
 }
 export interface GetTransactionsByAddressRequest {
     blockchain?: Blockchain;
