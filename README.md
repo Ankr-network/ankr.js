@@ -17,7 +17,7 @@ yarn add @ankr.com/ankr.js
 #### 2. Initialize the provider
 
 ```javascript
-import AnkrProvider from '@ankr.com/ankr.js';
+import { AnkrProvider } from '@ankr.com/ankr.js';
 
 const provider = new AnkrProvider();
 
