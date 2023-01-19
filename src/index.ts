@@ -31,7 +31,7 @@ import {
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
 
-export default class AnkrProvider {
+export class AnkrProvider {
     url: string
     requestConfig: AxiosRequestConfig
     _nextId: number
