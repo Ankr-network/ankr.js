@@ -6,7 +6,7 @@
     "blockchain",
     "sdk"
   ],
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Compact library for interacting with Ankr APIs.",
   "main": "./dist/index.js",
   "files": [
