@@ -38,14 +38,19 @@ await provider.getNFTsByOwner({
 
 `ankr.js` supports the following chains at this time:
 
-- ETH: `"eth"`
-- BSC: `"bsc"`
+- Ethereum: `"eth"`
+- BNB Smart Chain: `"bsc"`
 - Polygon: `"polygon"`
 - Fantom: `"fantom"`
 - Arbitrum: `"arbitrum"`
 - Avalanche: `"avalanche"`
 - Syscoin NEVM: `"syscoin"`
 - Optimism: `"optimism"`
+
+
+- Ethereum Goerli: `"eth_goerli"`
+- Avalanche Fuji: `"avalanche_fuji"`
+
 
 ## Available methods
 
