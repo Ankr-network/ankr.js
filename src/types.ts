@@ -125,7 +125,7 @@ export interface GetTransactionsByAddressRequest {
     toBlock?: number | "latest" | "earliest";
     fromTimestamp?: number;
     toTimestamp?: number;
-    address?: string[];
+    address: string[];
     pageToken?: string;
     pageSize?: number;
     descOrder?: boolean;
@@ -150,11 +150,11 @@ export interface GetLogsRequest {
 }
 export interface BlockchainStats {
     blockchain: string;
-    total_transactions_count: number;
-    total_events_count: number;
-    latest_block_number: number;
-    block_time_ms: number;
-    native_coin_usd_price: string;
+    totalTransactionsCount: number;
+    totalEventsCount: number;
+    latestBlockNumber: number;
+    blockTimeMs: number;
+    nativeCoinUsdPrice: string;
 }
 export interface GetBlockchainStatsReply {
     stats: BlockchainStats[];
@@ -378,4 +378,4 @@ export interface GetNftTransfersReply {
     nextPageToken?: string;
     transfers: NftTransfer[];
 }
-export type Blockchain = 'arbitrum' | 'avalanche' | 'bsc' | 'eth' | 'fantom' | 'polygon' | 'syscoin' | 'optimism';
+export type Blockchain = 'eth' | 'eth_goerli' | 'optimism' | 'bsc' | 'syscoin' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche_fuji' | 'avalanche';
