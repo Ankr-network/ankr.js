@@ -16,13 +16,14 @@ yarn add @ankr.com/ankr.js
 
 #### 2. Initialize the provider
 
+_Note: to use Advanced API for free starting from 29.05.2023 you have to register on the platform._
+
+Get your individual endpoint here https://www.ankr.com/rpc/advanced-api and provide it to the `AnkrProvider` constructor.
+
 ```javascript
 import { AnkrProvider } from '@ankr.com/ankr.js';
 
-const provider = new AnkrProvider();
-
-// or if you have a premium account
-const provider = new AnkrProvider('YOUR_API_KEY');
+const provider = new AnkrProvider('YOUR_ENDPOINT');
 ```
 
 #### 3. Use the provider and call one of the supported methods
@@ -184,36 +185,7 @@ const currencies = async () => {
 };
 ```
 
-#### `getTokenPriceHistory`
-
-Shows price history for provided token on specific chain
-You can provide **only one param**: `fromTimestamp` or `toTimestamp`. Timestamps and intervals must be provided in seconds.
-If a `fromTimestamp` is not supplied, the `interval` will be applied in reverse from `toTimestamp`
-if no `toTimestamp` => take by period & limit
-```
-fromTimestamp----|p1|----|p2|----|pN|---->
-<----|pN|----|p2|----|p1|----toTimestamp
-```
-Defaults:
-defaultInterval - 24 hours
-maxInterval - 365 days
-maxLimit - 1000 (under testing)
-defaultLimit - 100 (under testing)
-
-```javascript
-const prices = async () => {
-  return await provider.getTokenPriceHistory({
-        blockchain: "eth",
-        contractAddress: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-        fromTimestamp: 1667195581, 
-        interval: 86400, // 24h
-        limit: 337
-  });
-};
-```
-
 ### About API keys
 
-For now, Ankr is offering _free_ access to these APIs with no request limits i.e. you don't need an API key at this time.
-
-Later on, these APIs will become a part of Ankr Protocol's [Premium Plan](https://www.ankr.com/protocol/plan/).
+Ankr is offering _free_ access to Advanced API, however you have to register on Ankr platform to access it.
+Get your individual endpoint here https://www.ankr.com/rpc/advanced-api.
