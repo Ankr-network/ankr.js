@@ -39,11 +39,10 @@ export class AnkrProvider {
 
     /**
      * Constructs an instance of AnkrProvider.
-     * @param apiKey The API key for authorization.
-     * @param endpoint Ankr Scan MultiChain RPC endpoint.
+     * @param endpoint Advanced API endpoint. Example: https://rpc.ankr.com/multichain/YOUR-TOKEN
      */
-    constructor(apiKey: string = "", endpoint: string = "https://rpc.ankr.com/multichain/") {
-        this.url = endpoint + apiKey
+    constructor(endpoint: string) {
+        this.url = endpoint
         this.requestConfig = {headers: {'Content-Type': 'application/json'}};
         this._nextId = 1
     }
