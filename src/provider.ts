@@ -43,7 +43,7 @@ export class AnkrProvider {
      */
     constructor(endpoint: string) {
         this.url = endpoint
-        this.requestConfig = {headers: {'Content-Type': 'application/json'}};
+        this.requestConfig = {headers: {'Content-Type': 'application/json', 'Accept-Encoding': 'gzip'}};
         this._nextId = 1
     }
 
