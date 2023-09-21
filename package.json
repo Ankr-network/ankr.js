@@ -23,7 +23,9 @@
   "author": "Ankr",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^0.26.1"
+  },
+  "devDependencies": {
     "typescript": "^4.6.2"
   }
 }
