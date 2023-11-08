@@ -28,6 +28,19 @@ import {
     GetTransactionsByHashReply,
     GetTransactionsByHashRequest,
     GetTransfersRequest,
+    GetTokenPriceHistoryRequest,
+    GetTokenPriceHistoryReply,
+    GetInternalTransactionsByBlockNumberRequest,
+    GetInternalTransactionsReply,
+    GetInternalTransactionsByParentHashRequest,
+    GetInteractionsRequest,
+    GetInteractionsReply,
+    ExplainTokenPriceRequest,
+    ExplainTokenPriceReply,
+    GetBlockchainStatsRequest,
+    GetBlockchainStatsReply,
+    GetAccountBalanceHistoricalRequest,
+    GetAccountBalanceHistoricalReply
 } from "./types";
 
 type JsonRPCPayload = { error?: { code?: number, data?: any, message?: string }, result?: any };
@@ -172,6 +185,70 @@ export class AnkrProvider {
     async getCurrencies(params: GetCurrenciesRequest): Promise<GetCurrenciesReply> {
         return this.send<GetCurrenciesReply>("ankr_getCurrencies", params)
     }
+
+    /**
+     * Returns history of the token price.
+     * @param params A GetTokenPriceHistoryRequest object.
+     * @returns Promise<GetTokenPriceHistoryReply>
+     */
+    async getTokenPriceHistory(params: GetTokenPriceHistoryRequest): Promise<GetTokenPriceHistoryReply> {
+        return this.send<GetTokenPriceHistoryReply>("ankr_getTokenPriceHistory", params)
+    }
+
+    /**
+     * Returns coin and token balances of the wallet at specified block.
+     * @param params A GetAccountBalanceHistoricalRequest object.
+     * @returns Promise<GetAccountBalanceHistoricalReply>
+     */
+    async getAccountBalanceHistorical(params: GetAccountBalanceHistoricalRequest): Promise<GetAccountBalanceHistoricalReply> {
+        return this.send<GetAccountBalanceHistoricalReply>("ankr_getAccountBalanceHistorical", params)
+    }
+
+    /**
+     * Returns list of internal transactions.
+     * @param params A GetInternalTransactionsByBlockNumberRequest object.
+     * @returns Promise<GetInternalTransactionsReply>
+     */
+    async getInternalTransactionsByBlockNumber(params: GetInternalTransactionsByBlockNumberRequest): Promise<GetInternalTransactionsReply> {
+        return this.send<GetInternalTransactionsReply>("ankr_getInternalTransactionsByBlockNumber", params)
+    }
+
+    /**
+     * Returns list of internal transactions in the block.
+     * @param params A GetInternalTransactionsByParentHashRequest object.
+     * @returns Promise<GetInternalTransactionsReply>
+     */
+    async getInternalTransactionsByParentHash(params: GetInternalTransactionsByParentHashRequest): Promise<GetInternalTransactionsReply> {
+        return this.send<GetInternalTransactionsReply>("ankr_getInternalTransactionsByParentHash", params)
+    }
+
+    /**
+     * Returns list tokens and pool how price for calculated.
+     * @param params A ExplainTokenPriceRequest object.
+     * @returns Promise<ExplainTokenPriceReply>
+     */
+    async explainTokenPrice(params: ExplainTokenPriceRequest): Promise<ExplainTokenPriceReply> {
+        return this.send<ExplainTokenPriceReply>("ankr_explainTokenPrice", params)
+    }
+
+    /**
+     * Returns blockchain stats (num of txs, etc.).
+     * @param params A GetBlockchainStatsRequest object.
+     * @returns Promise<GetBlockchainStatsReply>
+     */
+    async getBlockchainStats(params: GetBlockchainStatsRequest): Promise<GetBlockchainStatsReply> {
+        return this.send<GetBlockchainStatsReply>("ankr_getBlockchainStats", params)
+    }
+
+    /**
+     * Returns on which chain address was interacting.
+     * @param params A GetInteractionsRequest object.
+     * @returns Promise<GetInteractionsReply>
+     */
+    async getInteractions(params: GetInteractionsRequest): Promise<GetInteractionsReply> {
+        return this.send<GetInteractionsReply>("ankr_getInteractions", params)
+    }
+
 
     private async send<TReply>(method: string, params: any): Promise<TReply> {
         const request = {method, params, id: (this._nextId++), jsonrpc: "2.0"};

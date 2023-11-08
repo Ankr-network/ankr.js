@@ -1,6 +1,11 @@
 /* Do not change, this code is generated from Golang structs */
 
 
+export interface SyncStatus {
+    timestamp: number;
+    lag: string;
+    status: string;
+}
 export interface MethodInput {
     name: string;
     type: string;
@@ -64,13 +69,13 @@ export interface Transaction {
     gasUsed?: string;
     logs?: Log[];
     hash?: string;
-    status: string;
-    blockchain: string;
-    timestamp: string;
+    status?: string;
+    blockchain?: string;
+    timestamp?: string;
     method?: Method;
 }
 export interface Block {
-    blockchain: string;
+    blockchain?: string;
     number: string;
     hash: string;
     parentHash: string;
@@ -94,6 +99,7 @@ export interface Block {
 }
 export interface GetBlocksReply {
     blocks: Block[];
+    syncStatus?: SyncStatus;
 }
 export interface GetBlocksRequest {
     blockchain: Blockchain;
@@ -104,9 +110,11 @@ export interface GetBlocksRequest {
     includeTxs?: boolean;
     decodeLogs?: boolean;
     decodeTxData?: boolean;
+    syncCheck?: boolean;
 }
 export interface GetTransactionsByHashReply {
     transactions: Transaction[];
+    syncStatus?: SyncStatus;
 }
 export interface GetTransactionsByHashRequest {
     blockchain?: Blockchain | (Blockchain)[];
@@ -114,39 +122,44 @@ export interface GetTransactionsByHashRequest {
     includeLogs?: boolean;
     decodeLogs?: boolean;
     decodeTxData?: boolean;
+    syncCheck?: boolean;
 }
 export interface GetTransactionsByAddressReply {
     transactions: Transaction[];
     nextPageToken: string;
+    syncStatus?: SyncStatus;
 }
 export interface GetTransactionsByAddressRequest {
-    blockchain: Blockchain | (Blockchain)[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
-    fromTimestamp?: number;
-    toTimestamp?: number;
+    fromTimestamp?: number | "latest" | "earliest";
+    toTimestamp?: number | "latest" | "earliest";
+    blockchain: Blockchain | (Blockchain)[];
     address: string[];
     pageToken?: string;
     pageSize?: number;
     descOrder?: boolean;
     includeLogs?: boolean;
+    syncCheck?: boolean;
 }
 export interface GetLogsReply {
     nextPageToken?: string;
     logs: Log[];
+    syncStatus?: SyncStatus;
 }
 export interface GetLogsRequest {
-    blockchain: Blockchain | (Blockchain)[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
-    address?: string[];
-    topics?: (string | string[])[];
     fromTimestamp?: number | "latest" | "earliest";
     toTimestamp?: number | "latest" | "earliest";
+    blockchain: Blockchain | (Blockchain)[];
+    address?: string[];
+    topics?: (string | string[])[];
     pageToken?: string;
     pageSize?: number;
     descOrder?: boolean;
     decodeLogs?: boolean;
+    syncCheck?: boolean;
 }
 export interface BlockchainStats {
     blockchain: string;
@@ -158,15 +171,19 @@ export interface BlockchainStats {
 }
 export interface GetBlockchainStatsReply {
     stats: BlockchainStats[];
+    syncStatus?: SyncStatus;
 }
 export interface GetBlockchainStatsRequest {
     blockchain?: Blockchain | (Blockchain)[];
+    syncCheck?: boolean;
 }
 export interface GetInteractionsReply {
     blockchains: string[];
+    syncStatus?: SyncStatus;
 }
 export interface GetInteractionsRequest {
     address: string;
+    syncCheck?: boolean;
 }
 export interface Balance {
     blockchain: Blockchain;
@@ -185,23 +202,29 @@ export interface Balance {
 export interface GetAccountBalanceReply {
     nextPageToken?: string;
     totalBalanceUsd: string;
+    totalCount: number;
     assets: Balance[];
+    syncStatus?: SyncStatus;
 }
 export interface GetAccountBalanceRequest {
     blockchain?: Blockchain | (Blockchain)[];
     walletAddress: string;
     onlyWhitelisted?: boolean;
+    nativeFirst?: boolean;
     pageToken?: string;
     pageSize?: number;
+    syncCheck?: boolean;
 }
 export interface GetTokenPriceReply {
     usdPrice: string;
     blockchain: Blockchain;
     contractAddress?: string;
+    syncStatus?: SyncStatus;
 }
 export interface GetTokenPriceRequest {
     blockchain: Blockchain;
     contractAddress?: string;
+    syncCheck?: boolean;
 }
 export interface HolderBalance {
     holderAddress: string;
@@ -215,12 +238,14 @@ export interface GetTokenHoldersReply {
     holders: HolderBalance[];
     holdersCount: number;
     nextPageToken: string;
+    syncStatus?: SyncStatus;
 }
 export interface GetTokenHoldersRequest {
     blockchain: Blockchain;
     contractAddress: string;
     pageToken?: string;
     pageSize?: number;
+    syncCheck?: boolean;
 }
 export interface DailyHolderCount {
     holderCount: number;
@@ -235,12 +260,14 @@ export interface GetTokenHoldersCountReply {
     holderCountHistory: DailyHolderCount[];
     nextPageToken: string;
     latestHoldersCount: number;
+    syncStatus?: SyncStatus;
 }
 export interface GetTokenHoldersCountRequest {
     blockchain: Blockchain;
     contractAddress: string;
     pageToken?: string;
     pageSize?: number;
+    syncCheck?: boolean;
 }
 export interface CurrencyDetailsExtended {
     blockchain: Blockchain;
@@ -252,9 +279,11 @@ export interface CurrencyDetailsExtended {
 }
 export interface GetCurrenciesReply {
     currencies: CurrencyDetailsExtended[];
+    syncStatus?: SyncStatus;
 }
 export interface GetCurrenciesRequest {
     blockchain: Blockchain;
+    syncCheck?: boolean;
 }
 export interface TokenTransfer {
     fromAddress?: string;
@@ -275,27 +304,23 @@ export interface TokenTransfer {
 export interface GetTokenTransfersReply {
     nextPageToken?: string;
     transfers: TokenTransfer[];
+    syncStatus?: SyncStatus;
 }
 export interface GetTransfersRequest {
-    blockchain: Blockchain | (Blockchain)[];
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
     fromTimestamp?: number | "latest" | "earliest";
     toTimestamp?: number | "latest" | "earliest";
+    blockchain: Blockchain | (Blockchain)[];
     address?: string[];
     pageToken?: string;
     pageSize?: number;
     descOrder?: boolean;
+    syncCheck?: boolean;
 }
-export interface Attribute {
-    trait_type?: string;
-    value?: string;
-    display_type?: string;
-    bunny_id?: string;
-    count?: number;
-    frequency?: string;
-    mp_score?: string;
-    rarity?: string;
+export interface Trait {
+    trait_type: string;
+    value: string;
 }
 export interface Nft {
     blockchain: Blockchain;
@@ -308,12 +333,13 @@ export interface Nft {
     contractType: 'ERC721' | 'ERC1155' | 'UNDEFINED';
     contractAddress: string;
     quantity?: string;
-    traits?: Attribute[];
+    traits?: Trait[];
 }
 export interface GetNFTsByOwnerReply {
     owner: string;
     assets: Nft[];
     nextPageToken: string;
+    syncStatus?: SyncStatus;
 }
 export interface GetNFTsByOwnerRequest {
     blockchain?: Blockchain | (Blockchain)[];
@@ -321,13 +347,14 @@ export interface GetNFTsByOwnerRequest {
     walletAddress: string;
     pageToken?: string;
     pageSize?: number;
+    syncCheck?: boolean;
 }
 export interface NftAttributes {
     tokenUrl: string;
     imageUrl: string;
     name: string;
     description: string;
-    traits?: Attribute[];
+    traits?: Trait[];
     contractType: 'ERC721' | 'ERC1155' | 'UNDEFINED';
 }
 export interface NftMetadata {
@@ -341,22 +368,26 @@ export interface NftMetadata {
 export interface GetNFTMetadataReply {
     metadata?: NftMetadata;
     attributes?: NftAttributes;
+    syncStatus?: SyncStatus;
 }
 export interface GetNFTMetadataRequest {
     blockchain: Blockchain;
     contractAddress: string;
     tokenId: string;
     forceFetch: boolean;
+    syncCheck?: boolean;
 }
 export interface GetNFTHoldersReply {
     holders: string[];
     nextPageToken: string;
+    syncStatus?: SyncStatus;
 }
 export interface GetNFTHoldersRequest {
     blockchain: Blockchain;
     contractAddress: string;
     pageToken?: string;
     pageSize?: number;
+    syncCheck?: boolean;
 }
 export interface NftTransfer {
     fromAddress: string;
@@ -377,5 +408,138 @@ export interface NftTransfer {
 export interface GetNftTransfersReply {
     nextPageToken?: string;
     transfers: NftTransfer[];
+    syncStatus?: SyncStatus;
 }
-export type Blockchain = 'eth' | 'eth_goerli' | 'optimism' | 'bsc' | 'syscoin' | 'polygon' | 'fantom' | 'arbitrum' | 'avalanche_fuji' | 'avalanche';
+export interface GetTokenAllowancesRequest {
+    blockchain: Blockchain | (Blockchain)[];
+    walletAddress: string;
+    spenderAddress?: string;
+    contractAddress?: string;
+}
+export interface ERC20TokenAllowance {
+    walletAddress?: string;
+    spenderAddress?: string;
+    contractAddress?: string;
+    value?: string;
+    tokenDecimals?: number;
+    blockHeight: number;
+    timestamp: number;
+    transactionHash?: string;
+    blockchain?: string;
+    tokenName?: string;
+    tokenSymbol?: string;
+    thumbnail: string;
+    rawLog?: Log;
+}
+export interface GetTokenAllowancesReply {
+    allowances: ERC20TokenAllowance[];
+}
+export interface GetTokenPriceHistoryRequest {
+    blockchain: Blockchain;
+    contractAddress: string;
+    fromTimestamp?: number | "latest" | "earliest";
+    toTimestamp?: number | "latest" | "earliest";
+    interval?: number;
+    limit?: number;
+    syncCheck?: boolean;
+}
+export interface Quote {
+    timestamp: number;
+    blockHeight: number;
+    usdPrice: string;
+}
+export interface GetTokenPriceHistoryReply {
+    quotes: Quote[];
+    syncStatus?: SyncStatus;
+}
+export interface ExplainTokenPriceRequest {
+    blockchain: Blockchain;
+    tokenAddress: string;
+    blockHeight: number | "latest" | "earliest";
+}
+export interface PriceEstimate {
+    strategy: string;
+    price: string;
+}
+export interface ExplainTokenPriceLPDetails {
+    address: string;
+    token0: string;
+    token1: string;
+    lastUpdatedBlock: number;
+    reserve0: string;
+    reserve1: string;
+    price: string;
+}
+export interface ExplainTokenPriceTokenDetails {
+    contractAddress: string;
+    decimals: number;
+    name: string;
+    symbol: string;
+}
+export interface ExplainTokenPriceSinglePair {
+    token0: ExplainTokenPriceTokenDetails;
+    token1: ExplainTokenPriceTokenDetails;
+    liquidity_pools: ExplainTokenPriceLPDetails[];
+    priceEstimates: PriceEstimate[];
+}
+export interface ExplainTokenPriceReply {
+    blockchain: string;
+    tokenAddress: string;
+    pairs: ExplainTokenPriceSinglePair[];
+    priceEstimates: PriceEstimate[];
+}
+export interface GetInternalTransactionsByParentHashRequest {
+    blockchain: Blockchain;
+    parentTransactionHash: string;
+    onlyWithValue: boolean;
+    syncCheck?: boolean;
+}
+export interface GetInternalTransactionsByBlockNumberRequest {
+    blockchain: Blockchain;
+    blockNumber: number;
+    onlyWithValue: boolean;
+    syncCheck?: boolean;
+}
+export interface InternalTransaction {
+    blockchain: Blockchain;
+    callType: string;
+    transactionHash: string;
+    blockHeight: number;
+    blockHash: string;
+    fromAddress: string;
+    contractAddress?: string;
+    toAddress: string;
+    value: string;
+    gas: number;
+    gasUsed: number;
+    timestamp: string;
+    transactionIndex: number;
+    callPath?: string;
+    callStack?: number[];
+    error?: string;
+    input: string;
+    output: string;
+}
+export interface GetInternalTransactionsReply {
+    internalTransactions: InternalTransaction[];
+    nextPageToken?: string;
+}
+export interface GetAccountBalanceHistoricalRequest {
+    blockchain?: Blockchain | (Blockchain)[];
+    walletAddress: string;
+    onlyWhitelisted?: boolean;
+    nativeFirst?: boolean;
+    pageToken?: string;
+    pageSize?: number;
+    blockHeight?: number | "latest" | "earliest";
+    syncCheck?: boolean;
+}
+export interface GetAccountBalanceHistoricalReply {
+    nextPageToken?: string;
+    totalBalanceUsd: string;
+    totalCount: number;
+    assets: Balance[];
+    syncStatus?: SyncStatus;
+    blockHeight?: number | "latest" | "earliest";
+}
+export type Blockchain = 'arbitrum' | 'avalanche' | 'avalanche_fuji' | 'base' | 'bsc' | 'eth' | 'eth_goerli' | 'fantom' | 'flare' | 'gnosis' | 'linea' | 'optimism' | 'optimism_testnet' | 'polygon' | 'polygon_mumbai' | 'polygon_zkevm' | 'rollux' | 'scroll' | 'syscoin';
