@@ -56,13 +56,17 @@ Mainnet
 - Gnosis Chain: `"gnosis"`
 - Scroll: `"scroll"`
 - Linea: `"linea"`
+- Xai: `"xai"`
+- Telos: `"telos"`
 
 Testnet
 
-- Ethereum Goerli: `"eth_goerli"`
+- Ethereum Sepolia: `"eth_sepolia"`
+- Ethereum Holesky: `"eth_holesky"`
 - Avalanche Fuji: `"avalanche_fuji"`
-- Polygon Mumbai: `"polygon_mumbai"`
+- Polygon Amoy: `"polygon_amoy"`
 - Optimism Testnet: `"optimism_testnet"`
+- Base Sepolia: `"base_sepolia"`
 
 Appchain
 
@@ -71,6 +75,9 @@ Appchain
 Appchain Testnet
 
 - META Apes Testnet: `"bas_metaapes_testnet"`
+- Neura Devnet `"neura_devnet"`
+- Neura Testnet `"neura_testnet_v1"`
+- Incentiv Devnet `"incentiv_devnet"`
 
 ## Available methods
 
