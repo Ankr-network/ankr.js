@@ -58,6 +58,7 @@ Mainnet
 - Linea: `"linea"`
 - Xai: `"xai"`
 - Telos: `"telos"`
+- Xlayer: `"xlayer"`
 
 Testnet
 
