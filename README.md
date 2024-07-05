@@ -56,13 +56,18 @@ Mainnet
 - Gnosis Chain: `"gnosis"`
 - Scroll: `"scroll"`
 - Linea: `"linea"`
+- Xai: `"xai"`
+- Telos: `"telos"`
+- Xlayer: `"xlayer"`
 
 Testnet
 
-- Ethereum Goerli: `"eth_goerli"`
+- Ethereum Sepolia: `"eth_sepolia"`
+- Ethereum Holesky: `"eth_holesky"`
 - Avalanche Fuji: `"avalanche_fuji"`
-- Polygon Mumbai: `"polygon_mumbai"`
+- Polygon Amoy: `"polygon_amoy"`
 - Optimism Testnet: `"optimism_testnet"`
+- Base Sepolia: `"base_sepolia"`
 
 Appchain
 
@@ -71,6 +76,9 @@ Appchain
 Appchain Testnet
 
 - META Apes Testnet: `"bas_metaapes_testnet"`
+- Neura Devnet `"neura_devnet"`
+- Neura Testnet `"neura_testnet_v1"`
+- Incentiv Devnet `"incentiv_devnet"`
 
 ## Available methods
 
@@ -238,6 +246,7 @@ const nftsMetadata = async () => {
       blockchain: 'avalanche', 
       contractAddress: '0x8d01c8ee82e581e55c02117a676b5bbd4734fabb', 
       tokenId: '23240',
+      forceFetch: false
   });
 };
 ````
@@ -265,7 +274,7 @@ Get NFT Transfers of specified address.
 const nftTransfers = async () => {
   return await provider.getNftTransfers({
       blockchain: ['eth', 'bsc'],
-      address: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
+      address: ['0xd8da6bf26964af9d7eed9e03e53415d37aa96045'],
       fromTimestamp: 1672563107,
       toTimestamp: 1672563107,
   });
@@ -388,12 +397,11 @@ Get token transfers of specified address.
 const tokenTransfers = async () => {
   return await provider.getTokenTransfers({ 
       blockchain: 'eth',
-      address: '0xf16e9b0d03470827a95cdfd0cb8a8a3b46969b91',
+      address: ['0xf16e9b0d03470827a95cdfd0cb8a8a3b46969b91'],
       fromTimestamp: 1674441035,
       toTimestamp: 1674441035,
       pageSize: 1,
-      orderAsc: true,
-      includeLogs: true,
+      descOrder: true
   });
 };
 ```      

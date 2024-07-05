@@ -542,4 +542,4 @@ export interface GetAccountBalanceHistoricalReply {
     syncStatus?: SyncStatus;
     blockHeight?: number | "latest" | "earliest";
 }
-export type Blockchain = 'arbitrum' | 'avalanche' | 'avalanche_fuji' | 'base' | 'bsc' | 'eth' | 'eth_goerli' | 'fantom' | 'flare' | 'gnosis' | 'linea' | 'optimism' | 'optimism_testnet' | 'polygon' | 'polygon_mumbai' | 'polygon_zkevm' | 'rollux' | 'scroll' | 'syscoin';
+export type Blockchain = 'arbitrum' | 'avalanche' | 'avalanche_fuji' | 'base' | 'base_sepolia' | 'bsc' | 'eth' | 'eth_holesky' | 'eth_sepolia' | 'fantom' | 'flare' | 'gnosis' | 'incentiv_devnet' | 'linea' | 'neura_devnet' | 'neura_testnet_v1' | 'optimism' | 'optimism_testnet' | 'polygon' | 'polygon_amoy' | 'polygon_zkevm' | 'rollux' | 'scroll' | 'syscoin' | 'telos' | 'xai' | 'xlayer';
