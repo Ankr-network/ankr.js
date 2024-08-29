@@ -171,7 +171,7 @@ const transactions = async () => {
 
 #### `getTransactionsByAddress`
 
-Query data about transactions of specified address.
+Query data about transactions of specified addresses.
 
 ```javascript
 const transactions = async () => {
@@ -319,7 +319,7 @@ const currencies = async () => {
 
 #### `getTokenPriceHistory`
 
-Get a list of history of the price for given contract to given timestamp.
+Get a list of history of the price for the given contract to a given timestamp.
 
 ```javascript
 const tokenPriceHistory = async () => {
@@ -391,7 +391,7 @@ const tokenPrice = async () => {
 
 #### `getTokenTransfers`
 
-Get token transfers of specified address.
+Get token transfers of specified addresses.
 
 ```javascript
 const tokenTransfers = async () => {
