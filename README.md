@@ -59,6 +59,7 @@ Mainnet
 - Xai: `"xai"`
 - Telos: `"telos"`
 - Xlayer: `"xlayer"`
+- Stellar: `"stellar"`
 
 Testnet
 
