@@ -41,34 +41,33 @@ await provider.getNFTsByOwner({
 
 Mainnet 
 
-- Ethereum: `"eth"`
-- BNB Smart Chain: `"bsc"`
-- Polygon: `"polygon"`
-- Fantom: `"fantom"`
-- Arbitrum: `"arbitrum"`
 - Avalanche: `"avalanche"`
-- Syscoin NEVM: `"syscoin"`
+- Base: `"base"`
+- BNB Smart Chain: `"bsc"`
+- Ethereum: `"eth"`
+- Fantom: `"fantom"`
+- Flare: `"flare"`
+- Gnosis: `"gnosis"`
+- Linea: `"linea"`
 - Optimism: `"optimism"`
+- Polygon: `"polygon"`
 - Polygon zkEVM: `"polygon_zkevm"`
 - Rollux: `"rollux"`
-- Base: `"base"`
-- Flare: `"flare"`
-- Gnosis Chain: `"gnosis"`
 - Scroll: `"scroll"`
-- Linea: `"linea"`
-- Xai: `"xai"`
-- Telos: `"telos"`
-- Xlayer: `"xlayer"`
 - Stellar: `"stellar"`
+- Syscoin: `"syscoin"`
+- Telos: `"telos"`
+- Xai: `"xai"`
+- X Layer: `"xlayer"`
 
 Testnet
 
-- Ethereum Sepolia: `"eth_sepolia"`
-- Ethereum Holesky: `"eth_holesky"`
 - Avalanche Fuji: `"avalanche_fuji"`
-- Polygon Amoy: `"polygon_amoy"`
-- Optimism Testnet: `"optimism_testnet"`
 - Base Sepolia: `"base_sepolia"`
+- Ethereum Holesky: `"eth_holesky"`
+- Ethereum Sepolia: `"eth_sepolia"`
+- Optimism Testnet: `"optimism_testnet"`
+- Polygon Amoy: `"polygon_amoy"`
 
 Appchain
 
