@@ -421,7 +421,7 @@ const blockchainStats = async () => {
 Returns on which chain address was interacting.
 
 ```javascript
-const blockchainStats = async () => {
+const interactions = async () => {
   return await provider.getInteractions({
       address: '0xF977814e90dA44bFA03b6295A0616a897441aceC',
   });
