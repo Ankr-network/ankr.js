@@ -363,7 +363,7 @@ const internalTransactions = async () => {
 
 #### `explainTokenPrice`
 
-Get a list of tokens and pool how price for calculated.
+Get a list of tokens and pools explaining how the price is calculated.
 
 ```javascript
 const tokenPriceExplanation = async () => {
