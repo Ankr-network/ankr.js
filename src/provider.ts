@@ -120,7 +120,7 @@ export class AnkrProvider {
      * @returns Promise<Balance[]>
      */
     async getAccountBalance(params: GetAccountBalanceRequest): Promise<GetAccountBalanceReply> {
-        return this.send<GetAccountBalanceReply>("ankr_getAccountBalance", params)
+        return this.send<GetAccountBalanceReply>("ankr_getAccountBalanceV2", params)
     }
 
     /**
