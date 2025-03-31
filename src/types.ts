@@ -306,7 +306,7 @@ export interface GetTokenTransfersReply {
     transfers: TokenTransfer[];
     syncStatus?: SyncStatus;
 }
-export interface GetTransfersRequest {
+export interface GetTokenTransfersRequest {
     fromBlock?: number | "latest" | "earliest";
     toBlock?: number | "latest" | "earliest";
     fromTimestamp?: number | "latest" | "earliest";
