@@ -110,7 +110,7 @@ export class AnkrProvider {
      * @param params A GetNftTransfersRequest object.
      * @returns Promise<GetNftTransfersReply>
      */
-    async getNftTransfers(params: GetTransfersRequest): Promise<GetNftTransfersReply> {
+    async getNftTransfers(params: GetNftTransfersRequest): Promise<GetNftTransfersReply> {
         return this.send<GetNftTransfersReply>("ankr_getNftTransfers", params)
     }
 
@@ -253,7 +253,7 @@ export class AnkrProvider {
     private async send<TReply>(method: string, params: any): Promise<TReply> {
         const request = {method, params, id: (this._nextId++), jsonrpc: "2.0"};
         const response = await axios.post<JsonRPCPayload>(this.url, JSON.stringify(request), this.requestConfig);
-        return AnkrProvider.getResult(response.data) as TReply
+        return await AnkrProvider.getResult(response.data) as TReply;
     }
 
     private static getResult(payload: JsonRPCPayload): any {
