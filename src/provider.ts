@@ -223,7 +223,7 @@ export class AnkrProvider {
     }
 
     /**
-     * Returns list tokens and pool how price for calculated.
+     * Returns a list of tokens and the pool used for price calculation.
      * @param params A ExplainTokenPriceRequest object.
      * @returns Promise<ExplainTokenPriceReply>
      */
