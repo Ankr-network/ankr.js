@@ -55,6 +55,7 @@ Mainnet
 - Flare: `"flare"`
 - Gnosis Chain: `"gnosis"`
 - Scroll: `"scroll"`
+- Story: `"story_mainnet"`
 - Linea: `"linea"`
 - Xai: `"xai"`
 - Telos: `"telos"`
@@ -68,6 +69,7 @@ Testnet
 - Polygon Amoy: `"polygon_amoy"`
 - Optimism Testnet: `"optimism_testnet"`
 - Base Sepolia: `"base_sepolia"`
+- Story Aeneid Testnet: `"story_aeneid_testnet"`
 
 Appchain
 
